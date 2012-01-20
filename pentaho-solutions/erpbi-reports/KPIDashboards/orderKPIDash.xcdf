@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdf>
+	<title>Order KPI Dashboard</title>
+	<description>Order KPI Dashboard</description>
+	<icon></icon>
+	<template>orderTemplate.html</template>
+	<style>SOKPIOrderMantle</style>
+</cdf>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<action-sequence> 
+  <title>Customer Select</title>
+  <version>1</version>
+  <logging-level>ERROR</logging-level>
+  <documentation> 
+    <author/>  
+    <description>Customer Select</description>  
+    <help/>  
+    <result-type/>  
+    <icon/> 
+  </documentation>
+
+  <inputs/>
+
+  <outputs> 
+    <customers type="result-set"/> 
+  </outputs>
+
+  <resources/>
+  
+  <actions> 
+    <action-definition> 
+      <component-name>SQLLookupRule</component-name>
+      <action-type>Relational</action-type>
+      <action-outputs> 
+        <query-result type="result-set" mapping="customers"/> 
+      </action-outputs>
+      <component-definition> 
+        <jndi><![CDATA[erpi]]></jndi>  
+        <live><![CDATA[true]]></live>  
+        <query><![CDATA[SELECT 'All Customers by Code' as "id",
+	'All Customers by Code' as "value"
+UNION
+SELECT "CUSTOMER_NK" as "id",
+	"CUSTOMER_NK" as "value"
+FROM "ERPI"."CUSTOMER"
+WHERE "CUSTOMER_NK" != 'Unspecified']]></query> 
+      </component-definition> 
+    </action-definition>
+ 
+  </actions> 
+</action-sequence>

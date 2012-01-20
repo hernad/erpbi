@@ -1,0 +1,4 @@
+customer_name;payment_terms;customer_nk;credit_limit
+Xtreme Toys LTD; 42;XTRM;109.00
+Master Prodiem Toys Retail Customer; 44;XRETAIL;20000.00
+Tremendous Toys Incorporated; 42;TTOYS;200000.00

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<action-sequence> 
+  <title>Product Code Selector</title>
+  <version>1</version>
+  <logging-level>ERROR</logging-level>
+  <documentation> 
+    <author/>  
+    <description>Product Code Selector</description>  
+    <help/>  
+    <result-type/>  
+    <icon/> 
+  </documentation>
+
+  <inputs/>
+
+  <outputs> 
+    <productcodes type="result-set"/> 
+  </outputs>
+
+  <resources/>
+  
+  <actions> 
+    <action-definition> 
+      <component-name>SQLLookupRule</component-name>
+      <action-type>Relational</action-type>
+      <action-outputs> 
+        <query-result type="result-set" mapping="productcodes"/> 
+      </action-outputs>
+      <component-definition> 
+        <jndi><![CDATA[erpi]]></jndi>  
+        <query><![CDATA[SELECT 'All Products by Code' as "id",
+	'All Products by Code' as "value"
+UNION
+SELECT "PRODUCT_NK" as "id",
+	"PRODUCT_NK" as "value"
+FROM "ERPI"."PRODUCT"
+WHERE "PRODUCT_NK" != 'Unspecified']]></query>  
+        <live><![CDATA[true]]></live> 
+      </component-definition> 
+    </action-definition>
+ 
+  </actions> 
+</action-sequence>

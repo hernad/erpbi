@@ -1,0 +1,41 @@
+product_nk;product_name;type;class;category
+BPAINT1;Blue Paint Type Paint 1;Purchased;TOYS-COMP;CLASSIC-METAL
+BRCPFN1;Inactive Item;Purchased;TOYS-OTHER;Unspecified
+BTRUCK1;Blue Tough Truck;Manufactured;TOYS-TRUCKS;CLASSIC-METAL
+CBODY1;Car Body Type 1;Purchased;TOYS-COMP;CLASSIC-METAL
+CBUMP;Chromed Bumper;Manufactured;TOYS-COMP;CLASSIC-METAL
+CHROMING;Outside Process - Chroming;Outside Process;TOYS-OTHER;Unspecified
+COLLECTORS-LINE;Collectors Product Family;Purchased;TOYS-OTHER;Unspecified
+CTRUCK1;Custom Tough Truck Type 1;Manufactured;TOYS-TRUCKS;CLASSIC-METAL
+DTRUCK1;Diamond Special Edition Truck;Purchased;TOYS-TRUCKS;CLASSIC-METAL
+FEN1;Fender Type 1;Purchased;TOYS-COMP;CLASSIC-METAL
+HOTEL;Hotel travel expense;Reference;SERVICES;SERVICES
+HUB1;Hubcap Type 1;Purchased;TOYS-COMP;CLASSIC-METAL
+KCAR1;Kit Car Type 1;Kit;TOYS-CARS;CLASSIC-METAL
+MILEAGE;Automobile mileage - travel expense;Reference;SERVICES;SERVICES
+PHKIT;Truck Kit Type 1;Phantom;TOYS-TRUCKS;Unspecified
+PROFSVCS;Professional Services;Reference;SERVICES;SERVICES
+RBUMP1;Tough Truck Body Type 1;Purchased;TOYS-COMP;CLASSIC-METAL
+REPAIRT1;Repair Type 1 - Truck ;Manufactured;TOYS-REPAIR;CLASSIC-METAL
+RPAINT1;Red Paint Type Paint 1;Purchased;TOYS-COMP;CLASSIC-METAL
+RTRUCK1;Red Tough Truck;Manufactured;TOYS-TRUCKS;CLASSIC-METAL
+SHEET1;Sheet Metal Type 1;Purchased;TOYS-COMP;Unspecified
+SHSCRAP1;Scrap Sheet Metal;Purchased;TOYS-OTHER;CLASSIC-METAL
+STOCKCAR1;Classic Race Car With Logo;Manufactured;TOYS-CARS;CLASSIC-METAL
+STRUCK1;Collectors Autographed Signed;Manufactured;TOYS-TRUCKS;CLASSIC-METAL
+TBODY1;Tough Truck Body Type 1;Purchased;TOYS-COMP;CLASSIC-METAL
+TBOX1;Product Box Type 1;Purchased;TOYS-COMP;CLASSIC-METAL
+TBOX2;Product Box Type 2;Purchased;TOYS-COMP;CLASSIC-METAL
+TCOAT-G;Gloss Coat Finish;Purchased;TOYS-COMP;Unspecified
+TDECAL-F;FASCAR Racing Decal;Purchased;TOYS-COMP;Unspecified
+TDECAL-P;PUSCH Racing Decal;Purchased;TOYS-COMP;Unspecified
+TINSERT1;Packaging Insert Type 1;Purchased;TOYS-COMP;CLASSIC-METAL
+TKIT1;Truck Kit Type 1;Manufactured;TOYS-COMP;Unspecified
+TSUB1;Packaging Subassembly Type 1;Manufactured;TOYS-COMP;Unspecified
+TSUB2;Packaging Subassembly Type 2;Manufactured;TOYS-COMP;Unspecified
+TWHEEL1;Truck Wheel Type 1;Purchased;TOYS-COMP;CLASSIC-METAL
+WPAINT1;White Paint Type Paint 1;Purchased;TOYS-COMP;CLASSIC-METAL
+WTRUCK1;White Tough Truck;Manufactured;TOYS-TRUCKS;CLASSIC-METAL
+YPAINT1;Yellow Paint 1;Purchased;TOYS-COMP;CLASSIC-METAL
+YPAINT2;Yellow Neon Paint 2;Purchased;TOYS-COMP;CLASSIC-METAL
+YTRUCK1;Yellow Tough Truck;Manufactured;TOYS-TRUCKS;CLASSIC-METAL

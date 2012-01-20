@@ -1,0 +1,55 @@
+
+<table id="board">
+	<tr>
+		<td>
+			<table>
+				<tr>
+					<td valign="top"><div id="orderPivot"></div></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+
+<script language="javascript" type="text/javascript">
+
+orderP = 
+{
+  name: "orderPivot",
+  type: "jpivot",
+  solution: "erpbi-reports",
+  path: "SOPivots",
+  action: "orderByPeriodByDim.analysisview.xaction",
+  listeners:[ "dimOne", "year"],
+  parameters: [["dimOne","dimOne"], ["YEAR","year"]],
+  iframeHeight: "1100px",
+  iframeWidth: "800px",
+  htmlObject: "orderPivot",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){}
+}
+
+var components = 
+[	
+	yearSelector,
+	dimOneSelector,
+	dimTwoSelector,
+	orderP
+];
+
+</script>
+
+<script language="javascript" type="text/javascript">
+
+	function load()
+	{
+		Dashboards.init(components);
+	}
+
+	loadTree();
+	load();
+	document.close();
+
+</script>

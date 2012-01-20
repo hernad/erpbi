@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<action-sequence> 
+  <title>Orders by Period by Dimensions Action</title>
+  <version>1</version>
+  <logging-level>ERROR</logging-level>
+  <documentation> 
+    <author>joe</author>  
+    <help/>  
+    <result-type/>  
+    <description>Orders by Period by Dimensions Action</description>  
+    <icon/>  
+    <!-- need an icon --> 
+  </documentation>
+
+  <inputs> 
+    <mode type="string"> 
+      <default-value/>  
+      <sources> 
+        <request>mode</request> 
+      </sources> 
+    </mode>  
+    <YEAR type="string"> 
+      <sources> 
+        <request>YEAR</request> 
+      </sources>  
+      <default-value><![CDATA[2007]]></default-value> 
+    </YEAR>  
+    <dimOne type="string"> 
+      <sources> 
+        <request>dimOne</request> 
+      </sources>  
+      <default-value><![CDATA[Product.Product by Class]]></default-value> 
+    </dimOne> 
+  </inputs>
+
+  <outputs> 
+    <model type="string"/>  
+    <connection type="string"/>  
+    <mdx type="string"/>  
+    <options type="list"/>  
+    <title type="string"/>  
+    <url type="string"> 
+      <destinations> 
+        <response>redirect</response> 
+      </destinations> 
+    </url>  
+    <chartaxistickfontsize type="string"/>  
+    <chartslicerfontsize type="string"/>  
+    <chartlegendfontfamily type="string"/>  
+    <showgrid type="string"/>  
+    <actionreference type="string"/>  
+    <chartaxislabelfontsize type="string"/>  
+    <chartslicerlocation type="string"/>  
+    <chartaxistickfontfamily type="string"/>  
+    <chartheight type="string"/>  
+    <chartslicerfontfamily type="string"/>  
+    <chartvertaxislabel type="string"/>  
+    <chartaxislabelfontstyle type="string"/>  
+    <query type="string"/>  
+    <chartdrillthroughenabled type="string"/>  
+    <chartbackgroundb type="string"/>  
+    <chartwidth type="string"/>  
+    <role type="string"/>  
+    <chartaxistickfontstyle type="string"/>  
+    <charttitlefontsize type="string"/>  
+    <chartbackgroundg type="string"/>  
+    <chartlegendfontstyle type="string"/>  
+    <chartshowslicer type="string"/>  
+    <charttitlefontstyle type="string"/>  
+    <chartlegendlocation type="string"/>  
+    <chartlocation type="string"/>  
+    <chartbackgroundr type="string"/>  
+    <charttype type="string"/>  
+    <chartaxislabelfontfamily type="string"/>  
+    <chartlegendfontsize type="string"/>  
+    <chartshowlegend type="string"/>  
+    <chartaxisticklabelrotation type="string"/>  
+    <charthorizaxislabel type="string"/>  
+    <charttitle type="string"/>  
+    <chartsliceralignment type="string"/>  
+    <chartslicerfontstyle type="string"/>  
+    <charttitlefontfamily type="string"/> 
+  </outputs>
+
+  <resources/>
+  
+  <actions> 
+    <action-definition> 
+      <component-name>PivotViewComponent</component-name>
+      <action-type>Pivot View</action-type>
+      <action-inputs> 
+        <mode type="string"/>  
+        <YEAR type="string"/>  
+        <dimOne type="string"/> 
+      </action-inputs>
+      <action-outputs> 
+        <model type="string"/>  
+        <connection type="string"/>  
+        <mdx type="string"/>  
+        <options type="list"/>  
+        <title type="string"/>  
+        <url type="string"/>  
+        <chartaxistickfontsize type="string"/>  
+        <chartslicerfontsize type="string"/>  
+        <chartlegendfontfamily type="string"/>  
+        <showgrid type="string"/>  
+        <actionreference type="string"/>  
+        <chartaxislabelfontsize type="string"/>  
+        <chartslicerlocation type="string"/>  
+        <chartaxistickfontfamily type="string"/>  
+        <chartheight type="string"/>  
+        <chartslicerfontfamily type="string"/>  
+        <chartvertaxislabel type="string"/>  
+        <chartaxislabelfontstyle type="string"/>  
+        <query type="string"/>  
+        <chartdrillthroughenabled type="string"/>  
+        <chartbackgroundb type="string"/>  
+        <chartwidth type="string"/>  
+        <role type="string"/>  
+        <chartaxistickfontstyle type="string"/>  
+        <charttitlefontsize type="string"/>  
+        <chartbackgroundg type="string"/>  
+        <chartlegendfontstyle type="string"/>  
+        <chartshowslicer type="string"/>  
+        <charttitlefontstyle type="string"/>  
+        <chartlegendlocation type="string"/>  
+        <chartlocation type="string"/>  
+        <chartbackgroundr type="string"/>  
+        <charttype type="string"/>  
+        <chartaxislabelfontfamily type="string"/>  
+        <chartlegendfontsize type="string"/>  
+        <chartshowlegend type="string"/>  
+        <chartaxisticklabelrotation type="string"/>  
+        <charthorizaxislabel type="string"/>  
+        <charttitle type="string"/>  
+        <chartsliceralignment type="string"/>  
+        <chartslicerfontstyle type="string"/>  
+        <charttitlefontfamily type="string"/> 
+      </action-outputs>
+      <component-definition> 
+        <title><![CDATA[OrdersP]]></title>  
+        <viewer>Pivot</viewer>  
+        <model><![CDATA[solution:/admin/ERPI_SO_Schema.xml]]></model>  
+        <options> 
+          <personal/>  
+          <cube-nav/>  
+          <mdx-edit/>  
+          <sort-conf/>  
+          <spacer/>  
+          <level-style/>  
+          <hide-spans/>  
+          <properties/>  
+          <non-empty/>  
+          <swap-axes/>  
+          <spacer/>  
+          <drill-member/>  
+          <drill-position/>  
+          <drill-replace/>  
+          <drill-thru/>  
+          <spacer/>  
+          <chart/>  
+          <chart-conf/>  
+          <spacer/>  
+          <print-conf/>  
+          <print-pdf/>  
+          <spacer/>  
+          <excel/> 
+        </options>  
+        <jndi><![CDATA[erpi]]></jndi>  
+        <cube>SOOrder</cube>  
+        <chartaxistickfontsize><![CDATA[12]]></chartaxistickfontsize>  
+        <chartslicerfontsize><![CDATA[12]]></chartslicerfontsize>  
+        <chartlegendfontfamily><![CDATA[SansSerif]]></chartlegendfontfamily>  
+        <showgrid><![CDATA[true]]></showgrid>  
+        <actionreference><![CDATA[Sales Reports/Pivots/OrdersP.analysisview.xaction]]></actionreference>  
+        <chartaxislabelfontsize><![CDATA[12]]></chartaxislabelfontsize>  
+        <chartslicerlocation><![CDATA[1]]></chartslicerlocation>  
+        <chartaxistickfontfamily><![CDATA[SansSerif]]></chartaxistickfontfamily>  
+        <chartheight><![CDATA[300]]></chartheight>  
+        <chartslicerfontfamily><![CDATA[SansSerif]]></chartslicerfontfamily>  
+        <chartvertaxislabel><![CDATA[]]></chartvertaxislabel>  
+        <chartaxislabelfontstyle><![CDATA[0]]></chartaxislabelfontstyle>  
+        <chartdrillthroughenabled><![CDATA[false]]></chartdrillthroughenabled>  
+        <chartbackgroundb><![CDATA[200]]></chartbackgroundb>  
+        <chartwidth><![CDATA[840]]></chartwidth>  
+        <role/>  
+        <chartaxistickfontstyle><![CDATA[0]]></chartaxistickfontstyle>  
+        <charttitlefontsize><![CDATA[18]]></charttitlefontsize>  
+        <chartbackgroundg><![CDATA[200]]></chartbackgroundg>  
+        <chartlegendfontstyle><![CDATA[0]]></chartlegendfontstyle>  
+        <chartshowslicer><![CDATA[true]]></chartshowslicer>  
+        <charttitlefontstyle><![CDATA[1]]></charttitlefontstyle>  
+        <connection/>  
+        <chartlegendlocation><![CDATA[3]]></chartlegendlocation>  
+        <chartlocation><![CDATA[bottom]]></chartlocation>  
+        <chartbackgroundr><![CDATA[200]]></chartbackgroundr>  
+        <charttype><![CDATA[3]]></charttype>  
+        <chartaxislabelfontfamily><![CDATA[SansSerif]]></chartaxislabelfontfamily>  
+        <chartlegendfontsize><![CDATA[10]]></chartlegendfontsize>  
+        <chartshowlegend><![CDATA[true]]></chartshowlegend>  
+        <chartaxisticklabelrotation><![CDATA[30]]></chartaxisticklabelrotation>  
+        <charthorizaxislabel><![CDATA[]]></charthorizaxislabel>  
+        <charttitle><![CDATA[]]></charttitle>  
+        <chartsliceralignment><![CDATA[3]]></chartsliceralignment>  
+        <chartslicerfontstyle><![CDATA[0]]></chartslicerfontstyle>  
+        <charttitlefontfamily><![CDATA[SansSerif]]></charttitlefontfamily>  
+        <query><![CDATA[SELECT 
+  NON EMPTY { 
+
+    [Measures].[Amount, Order Gross]
+    , [Measures].[Date, Order]
+    , [Measures].[Date, Promise]
+  } ON COLUMNS,
+
+  NON EMPTY {
+
+    Crossjoin(
+      {[Order Date].[{YEAR}].Children}
+      , {
+        Crossjoin(
+          {[{dimOne}]}
+          , {[Order Line Item]}
+        )
+      }
+    )
+  } ON ROWS
+
+FROM [SOOrder]]]></query> 
+      </component-definition>  
+      <action-name>Pivot View</action-name>  
+      <logging-level>DEBUG</logging-level> 
+    </action-definition>
+ 
+  </actions> 
+</action-sequence>

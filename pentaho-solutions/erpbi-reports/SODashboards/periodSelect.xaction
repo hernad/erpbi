@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<action-sequence> 
+  <title>Period Selector</title>
+  <version>1</version>
+  <logging-level>ERROR</logging-level>
+  <documentation> 
+    <author/>  
+    <description>Period Selector</description>  
+    <help/>  
+    <result-type/>  
+    <icon/> 
+  </documentation>
+
+  <inputs/>
+
+  <outputs> 
+    <periods type="result-set"/> 
+  </outputs>
+
+  <resources/>
+  
+  <actions> 
+    <action-definition> 
+      <component-name>SQLLookupRule</component-name>
+      <action-type>Relational</action-type>
+      <action-outputs> 
+        <query-result type="result-set" mapping="periods"/> 
+      </action-outputs>
+      <component-definition> 
+        <jndi><![CDATA[erpi]]></jndi>  
+        <query><![CDATA[SELECT Distinct "PERIOD" as "id",
+	"PERIOD" as "value"
+FROM "ERPI"."DATE_DATA"]]></query>  
+        <live><![CDATA[true]]></live> 
+      </component-definition> 
+    </action-definition>
+ 
+  </actions> 
+</action-sequence>

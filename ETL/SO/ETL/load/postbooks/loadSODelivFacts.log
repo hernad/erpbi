@@ -1,0 +1,4 @@
+psql:C:/ErpBI/ETL/SO/ETL/load/postbooks/commandDeliv.txt:1: WARNING:  nonstandard use of \\ in a string literal
+LINE 1: ...ST_CENTER_K", "ACCOUNT_REP_K", "CURRENCY" )  FROM 'C:\\ErpBI...
+                                                             ^
+HINT:  Use the escape string syntax for backslashes, e.g., E'\\'.

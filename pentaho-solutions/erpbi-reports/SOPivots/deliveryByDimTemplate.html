@@ -1,0 +1,52 @@
+
+<table id="board">
+	<tr>
+		<td>
+			<table>
+				<tr>
+					<td valign="top" width="800" height="800"><div id="deliveryPivot"></div></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+
+<script language="javascript" type="text/javascript">
+
+deliveryP = 
+{
+  name: "deliveryP",
+  type: "jpivot",
+  solution: "erpbi-reports",
+  path: "SOPivots",
+  action: "deliveryByDim.xaction",
+  listeners:["year", "dimOne", "dimTwo"],
+  parameters: [["YEAR","year"], ["dimOne","dimOne"], ["dimTwo","dimTwo"]],
+  htmlObject: "deliveryPivot",
+  iframe: true,
+  iframeHeight: "100%",
+  iframeWidth: "100%",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){}
+}
+
+var components = 
+[	
+	yearSelector,
+	dimOneSelector,
+	dimTwoSelector,
+	deliveryP
+];
+
+	function load()
+	{
+		Dashboards.init(components);
+	}
+
+	loadTree();
+	load();
+	document.close();
+
+</script>

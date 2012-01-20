@@ -1,0 +1,263 @@
+
+<table id="board">
+	<tr>
+		<td>
+			<table>
+				<tr>
+					<td valign="top"><div id="KPILineC"></div></td>
+				</tr>
+				<tr>
+					<td valign="top"><div id="KPIPreviousLineC"></div></td>
+				</tr>
+			</table>
+		</td>
+		<td>
+			<table>
+				<tr>
+					<td valign="top"><div style="height:165px;width:185px;" id="topCustomersL"></div></td>
+				</tr>
+				<tr>
+					<td valign="top"><div style="height:165px;width:185px;" id="topProdCodeL"></div></td>
+				</tr>
+				<tr>
+					<td valign="top"><div style="height:165px;width:185px;" id="topProdClassL"></div></td>
+				</tr>				
+			</table>
+		</td>
+		<td>
+			<table>
+				<tr>
+					<td valign="top"><div style="height:165px;width:185px;" id="topCustYearL"></div></td>
+				</tr>
+				<tr>
+					<td valign="top"><div style="height:165px;width:185px;" id="topProdCodeYearL"></div></td>
+				</tr>
+				<tr>
+					<td valign="top"><div style="height:165px;width:185px;" id="topProdClassYearL"></div></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+
+<script language="javascript" type="text/javascript">
+var cube = "SODelivery";
+var timedim = "Delivery Date.Calendar";
+
+var KPILineC = 
+{
+  name: "KPILineC",
+  type: "xaction",
+  solution: "erpbi-reports",
+  path: "KPIDashboards",
+  action: "KPILineChart.xaction",
+  parameters: 	[["YEAR","year"],
+  				["PERIOD","period"],
+  				["CUSTOMER","customer"],
+  				["PRODUCTCLASS","productClass"],
+  				["PRODUCTCODE","productCode"],
+  				["KPI","kpi"],
+  				["CUBE", "cube"],
+    			["TIMEDIM", "timedim"]
+  				],
+  listeners:["year", "customer", "productClass", "productCode", "period", "kpi"],
+  htmlObject: "KPILineC",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){}
+}
+
+var KPIPreviousLineC = 
+{
+  name: "KPIPreviousLineC",
+  type: "xaction",
+  solution: "erpbi-reports",
+  path: "KPIDashboards",
+  action: "KPIPreviousLineChart.xaction",
+  parameters: 	[["YEAR","year"],
+  				["PERIOD","period"],
+  				["CUSTOMER","customer"],
+  				["PRODUCTCLASS","productClass"],
+  				["PRODUCTCODE","productCode"],
+  				["KPI","kpi"],
+  				["CUBE", "cube"],
+    			["TIMEDIM", "timedim"]
+  				],
+  listeners:["year", "customer", "productClass", "productCode", "period", "kpi"],
+  htmlObject: "KPIPreviousLineC",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){}
+}
+
+var topCustomersL = 
+{
+  name: "topCustomersL",
+  type: "prpt",
+  solution: "erpbi-reports",
+  path: "SODashboards",
+  action: "topCustomers.prpt",
+  listeners:["year", "customer", "productClass", "productCode", "period", "kpi"],
+  parameters: [
+  			["YEAR","year"], 
+    		["PERIOD","period"],
+  			["CUSTOMER","customer"], 
+  			["PRODUCTCLASS","productClass"],
+    		["PRODUCTCODE","productCode"],
+    		["KPI","kpi"],
+    		["CUBE", "cube"],
+    		["TIMEDIM", "timedim"]
+   			],
+  htmlObject: "topCustomersL",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){}
+}
+
+var topProdCodeL = 
+{
+  name: "topProdCodeL",
+  type: "prpt",
+  solution: "erpbi-reports",
+  path: "SODashboards",
+  action: "topProductCode.prpt",
+  listeners:["year", "customer", "productClass", "productCode", "period", "kpi"],
+  parameters: [
+  			["YEAR","year"], 
+    		["PERIOD","period"],
+  			["CUSTOMER","customer"], 
+  			["PRODUCTCLASS","productClass"],
+    		["PRODUCTCODE","productCode"],
+    		["KPI","kpi"],
+    		["CUBE", "cube"],
+    		["TIMEDIM", "timedim"]
+   			],
+  htmlObject: "topProdCodeL",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){}
+}
+
+var topProdClassL = 
+{
+  name: "topProdClassL",
+  type: "prpt",
+  solution: "erpbi-reports",
+  path: "SODashboards",
+  action: "topProductClass.prpt",
+  listeners:["year", "customer", "productClass", "productCode", "period", "kpi"],
+  parameters: [
+  			["YEAR","year"], 
+    		["PERIOD","period"],
+  			["CUSTOMER","customer"], 
+  			["PRODUCTCLASS","productClass"],
+    		["PRODUCTCODE","productCode"],
+    		["KPI","kpi"],
+    		["CUBE", "cube"],
+    		["TIMEDIM", "timedim"]
+   			],
+  htmlObject: "topProdClassL",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){}
+}
+
+var topCustYearL = 
+{
+  name: "topCustYearL",
+  type: "prpt",
+  solution: "erpbi-reports",
+  path: "SODashboards",
+  action: "topCustYear.prpt",
+  listeners:["year", "customer", "productClass", "productCode", "kpi"],
+  parameters: [
+  			["YEAR","year"], 
+  			["CUSTOMER","customer"], 
+  			["PRODUCTCLASS","productClass"],
+    		["PRODUCTCODE","productCode"],
+    		["KPI","kpi"],
+    		["CUBE", "cube"],
+    		["TIMEDIM", "timedim"]
+   			],
+  htmlObject: "topCustYearL",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){}
+}
+
+var topProdCodeYearL = 
+{
+  name: "topProdCodeYearL",
+  type: "prpt",
+  solution: "erpbi-reports",
+  path: "SODashboards",
+  action: "topProdCodeYear.prpt",
+  listeners:["year", "customer", "productClass", "productCode", "kpi"],
+  parameters: [
+  			["YEAR","year"], 
+  			["CUSTOMER","customer"], 
+  			["PRODUCTCLASS","productClass"],
+    		["PRODUCTCODE","productCode"],
+    		["KPI","kpi"],
+    		["CUBE", "cube"],
+    		["TIMEDIM", "timedim"]
+   			],
+  htmlObject: "topProdCodeYearL",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){}
+}
+
+var topProdClassYearL = 
+{
+  name: "topProdClassYearL",
+  type: "prpt",
+  solution: "erpbi-reports",
+  path: "SODashboards",
+  action: "topProdClassYear.prpt",
+  listeners:["year", "customer", "productClass", "productCode", "kpi"],
+  parameters: [
+  			["YEAR","year"], 
+  			["CUSTOMER","customer"], 
+  			["PRODUCTCLASS","productClass"],
+    		["PRODUCTCODE","productCode"],
+    		["KPI","kpi"],
+    		["CUBE", "cube"],
+    		["TIMEDIM", "timedim"]
+   			],
+  htmlObject: "topProdClassYearL",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){}
+}
+
+
+var components = 
+[
+	yearSelector,
+	periodSelector,
+	custSelector,
+	prodClassSelector,
+	prodCodeSelector,
+	KPISelector,
+	KPILineC,
+	KPIPreviousLineC,
+	topCustomersL,
+	topProdCodeL,
+	topProdClassL,
+	topCustYearL,
+	topProdCodeYearL,
+	topProdClassYearL
+];
+
+	function loadDash()
+	{
+		Dashboards.init(components);
+	}
+
+	loadTree();
+	loadDash();
+	document.close();
+
+</script>

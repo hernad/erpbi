@@ -1,0 +1,312 @@
+
+<table id="board">
+	<tr>
+		<td>
+			<table>
+				<tr>
+					<td valign="top"><div id="ordersChart"></div></td>
+				</tr>
+				<tr>
+					<td valign="top"><div id="deliveriesChart"></div></td>
+				</tr>
+				<tr>
+					<td valign="top"><div style="height:200px;width:200px;" id="topCustomersL"></div></td>
+				</tr>
+			</table>
+		</td>
+		<td>
+			<table>
+				<tr>
+					<td><div id="balanceChart"></div></td>
+				</tr>
+				<tr>
+					<td><div id="o2dChart"></div></td>
+				</tr>
+				<tr>
+					<td ><div style="height:200px;width:200px;" id="topProfit"></div></td>
+				</tr>
+			</table>
+		</td>
+		<td>
+			<table>
+				<tr>
+					<td><div id="profitDial"></div></td>
+				</tr>
+				<tr>
+					<td><div id="o2dDial"></div></td>
+				</tr>
+				<tr>
+					<td><div style="height:200px;width:200px;" id="topOrderProd"></div></td>
+				</tr>				
+			</table>
+		</td>
+	</tr>
+	
+</table>
+
+
+<script language="javascript" type="text/javascript">
+
+var cube;
+var timedim;
+var kpi;
+
+var ordersC = 
+{
+  name: "orders",
+  type: "xaction",
+  solution: "erpbi-reports",
+  path: "SODashboards",
+  action: "ordersBChart.xaction",
+  parameters: [["YEAR","year"],["PERIOD","period"],["CUSTOMER","customer"],["PRODUCTCLASS","productClass"],["PRODUCTCODE","productCode"]],
+  listeners:["year", "customer", "productClass", "productCode", "period"],
+  htmlObject: "ordersChart",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){}
+}
+
+var deliveriesC = 
+{
+  name: "deliveries",
+  type: "xaction",
+  solution: "erpbi-reports",
+  path: "SODashboards",
+  action: "deliveryBChart.xaction",
+  listeners:["year", "customer", "productClass", "productCode", "period"],
+  parameters: [
+  			["YEAR","year"], 
+    		["PERIOD","period"],
+  			["CUSTOMER","customer"], 
+  			["PRODUCTCLASS","productClass"],
+    		["PRODUCTCODE","productCode"]
+   			],
+  htmlObject: "deliveriesChart",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){}
+}
+
+var balanceC = 
+{
+  name: "balance",
+  type: "xaction",
+  solution: "erpbi-reports",
+  path: "SODashboards",
+  action: "balanceBChart.xaction",
+  listeners:["year", "customer", "productClass", "productCode", "period"],
+  parameters: [
+  			["YEAR","year"], 
+    		["PERIOD","period"],
+  			["CUSTOMER","customer"], 
+  			["PRODUCTCLASS","productClass"],
+    		["PRODUCTCODE","productCode"]
+   			],
+  htmlObject: "balanceChart",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){}
+}
+
+var o2dC = 
+{
+  name: "o2d",
+  type: "xaction",
+  solution: "erpbi-reports",
+  path: "SODashboards",
+  action: "o2dBChart.xaction",
+  listeners:["year", "customer", "productClass", "productCode", "period"],
+  parameters: [
+  			["YEAR","year"], 
+    		["PERIOD","period"],
+  			["CUSTOMER","customer"], 
+  			["PRODUCTCLASS","productClass"],
+    		["PRODUCTCODE","productCode"]
+   			],
+  htmlObject: "o2dChart",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){}
+}
+
+cube = "SOOrder";
+timedim = "Order Date.Calendar";
+kpi = "Amount, Order Gross";
+
+var topCustomersL = 
+{
+  name: "topCustomersL",
+  type: "prpt",
+  solution: "erpbi-reports",
+  path: "SODashboards",
+  action: "topCustomers.prpt",
+  listeners:["year", "customer", "productClass", "productCode", "period"],
+  parameters: [
+  			["YEAR","year"], 
+    		["PERIOD","period"],
+  			["CUSTOMER","customer"], 
+  			["PRODUCTCLASS","productClass"],
+    		["PRODUCTCODE","productCode"],
+    		["KPI","kpi"],
+    		["CUBE", "cube"],
+    		["TIMEDIM", "timedim"]
+   			],
+  htmlObject: "topCustomersL",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){}
+}
+
+var topProfitL = 
+{
+  name: "topProfit",
+  type: "prpt",
+  solution: "erpbi-reports",
+  path: "SODashboards",
+  action: "topProfit.prpt",
+  listeners:["year", "customer", "productClass", "productCode", "period"],
+  parameters: [
+  			["YEAR","year"], 
+    		["PERIOD","period"],
+  			["CUSTOMER","customer"], 
+  			["PRODUCTCLASS","productClass"],
+    		["PRODUCTCODE","productCode"]
+   			],
+  htmlObject: "topProfit",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){}
+}
+
+var profitDialMeta =  {
+	dialChartDefinition : {
+		width: 200,
+		height: 150,
+		chartType: "DialChart",
+		queryType: 'mdx',
+		jndi: "erpi",
+		title: "Gross Profit Margin",
+		catalog: "solution:admin/ERPI_SO_Schema.xml",
+		colors: ["#F16C3A","#FFFF00","#B0D837"],
+		intervals: [0.1,0.2,1.0],
+
+		query: function(){
+			var query =  "select NON EMPTY ([Measures].[Ratio, Gross Profit Margin]) ON COLUMNS,"
+						+ " ([Delivery Date].[" + year + "].[" + period + "]) ON ROWS"
+						+ " from [SODelivery]" 
+						+ " where ([Customer.Customer Code].[" + customer + "],"
+						+ "[Product.Product by Class].[" + productClass + "],"
+						+ "[Product.Product Code].[" + productCode + "])";
+			return query;
+		}
+	}
+};
+
+var profitDialC = 
+	{
+		name: "profitDial",
+		type: "dialComponent",
+		chartDefinition: profitDialMeta.dialChartDefinition,
+  		listeners:["year", "customer", "productClass", "productCode", "period"],
+  		parameters: [
+  			["YEAR","year"], 
+    		["PERIOD","period"],
+  			["CUSTOMER","customer"], 
+  			["PRODUCTCLASS","productClass"],
+    		["PRODUCTCODE","productCode"]
+   			],
+		htmlObject: "profitDial",
+		executeAtStart: true
+	};
+	
+var o2dDialMeta =  {
+	dialChartDefinition : {
+		width: 200,
+		height: 150,
+		chartType: "DialChart",
+		queryType: 'mdx',
+		jndi: "erpi",
+		title: "Order to Delivery Days",
+		catalog: "solution:admin/ERPI_SO_Schema.xml",
+		colors: ["#B0D837","#FFFF00","#F16C3A"],
+		intervals: [30,45,60],
+
+		query: function(){
+			var query =  "select NON EMPTY ([Measures].[Days, Order to Delivery]) ON COLUMNS,"
+						+ " ([Fiscal Period.Fiscal Period CL].[" + year + "].[" + period + "]) ON ROWS"
+						+ " from [SOByPeriod]" 
+						+ " where ([Customer.Customer Code].[" + customer + "],"
+						+ "[Product.Product by Class].[" + productClass + "],"
+						+ "[Product.Product Code].[" + productCode + "])";
+			return query;
+		}
+	}
+};
+
+var o2dDialC = 
+	{
+		name: "o2dDial",
+		type: "dialComponent",
+		chartDefinition: o2dDialMeta.dialChartDefinition,
+  		listeners:["year", "customer", "productClass", "productCode", "period"],
+  		parameters: [
+  			["YEAR","year"], 
+    		["PERIOD","period"],
+  			["CUSTOMER","customer"], 
+  			["PRODUCTCLASS","productClass"],
+    		["PRODUCTCODE","productCode"]
+   			],
+		htmlObject: "o2dDial",
+		executeAtStart: true
+	};
+
+var topOrderProdL = 
+{
+  name: "topOrderProd",
+  type: "prpt",
+  solution: "erpbi-reports",
+  path: "SODashboards",
+  action: "topOrdersProd.prpt",
+  listeners:["year", "customer", "productClass", "productCode", "period"],
+  parameters: [
+  			["YEAR","year"], 
+    		["PERIOD","period"],
+  			["CUSTOMER","customer"], 
+  			["PRODUCTCLASS","productClass"],
+    		["PRODUCTCODE","productCode"]
+   			],
+  htmlObject: "topOrderProd",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){}
+}
+
+
+var components = 
+[
+	yearSelector,
+	periodSelector,
+	custSelector,
+	prodClassSelector,
+	prodCodeSelector,
+	ordersC,
+	deliveriesC,
+	balanceC,
+	topCustomersL,
+	topProfitL,
+	profitDialC,
+	o2dDialC,
+	topOrderProdL,
+	o2dC
+];
+
+	function loadDash()
+	{
+		Dashboards.init(components);
+	}
+
+	loadTree();
+	loadDash();
+	document.close();
+
+</script>

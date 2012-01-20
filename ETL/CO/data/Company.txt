@@ -1,0 +1,2 @@
+company_nk;company_name;currency
+1;Sample Company.1;USD

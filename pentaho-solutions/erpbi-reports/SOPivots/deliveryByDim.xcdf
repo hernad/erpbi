@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdf>
+	<title>Deliveries by Period by Dimension</title>
+	<author></author>
+	<description>Deliveries by Period by Dimension</description>
+	<icon></icon>
+	<template>deliveryByPeriodByDimTemplate.html</template>
+	<style>SOPivotMantle</style>  
+</cdf>

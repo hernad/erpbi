@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<action-sequence> 
+  <name>LineChart3.xaction</name>
+  <title>KPI Previous Year Line Chart</title>
+  <version>1</version>
+  <logging-level>TRACE</logging-level>
+  <documentation> 
+    <author/>  
+    <description>KPI Previous Year Line Chart</description>  
+    <help/>  
+    <result-type/>  
+    <icon/> 
+  </documentation>
+
+  <inputs> 
+    <YEAR type="string"> 
+      <sources> 
+        <request>YEAR</request> 
+      </sources>  
+      <default-value><![CDATA[2007]]></default-value> 
+    </YEAR>  
+    <CUSTOMER type="string"> 
+      <sources> 
+        <request>CUSTOMER</request> 
+      </sources>  
+      <default-value><![CDATA[All Customers by Code]]></default-value> 
+    </CUSTOMER>  
+    <PRODUCTCLASS type="string"> 
+      <sources> 
+        <request>PRODUCTCLASS</request> 
+      </sources>  
+      <default-value><![CDATA[All Products by Class]]></default-value> 
+    </PRODUCTCLASS>  
+    <PRODUCTCODE type="string"> 
+      <sources> 
+        <request>PRODUCTCODE</request> 
+      </sources>  
+      <default-value><![CDATA[All Products by Code]]></default-value> 
+    </PRODUCTCODE>  
+    <PERIOD type="string"> 
+      <sources> 
+        <request>PERIOD</request> 
+      </sources>  
+      <default-value><![CDATA[12]]></default-value> 
+    </PERIOD>  
+    <KPI type="string"> 
+      <sources> 
+        <request>KPI</request> 
+      </sources>  
+      <default-value><![CDATA[Amount, Order Gross]]></default-value> 
+    </KPI>  
+    <TIMEDIM type="string">
+      <sources>
+        <request>TIMEDIM</request>
+      </sources>
+      <default-value><![CDATA[Order Date.Calendar]]></default-value>
+    </TIMEDIM>
+    <CUBE type="string">
+      <sources>
+        <request>CUBE</request>
+      </sources>
+      <default-value><![CDATA[SOOrder]]></default-value>
+    </CUBE>
+  </inputs>
+
+  <outputs> 
+    <!--query_result/-->  
+    <image-tag type="string"/> 
+  </outputs>
+
+  <resources> 
+    <catalog> 
+      <solution-file> 
+        <location>\..\admin\ERPI_SO_Schema.xml</location>  
+        <mime-type>text/plain</mime-type> 
+      </solution-file> 
+    </catalog> 
+  </resources>
+  
+  <actions> 
+    <action-definition> 
+      <component-name>SQLLookupRule</component-name>
+      <action-type>Relational</action-type>
+      <action-outputs> 
+        <query-result type="result-set" mapping="query_result"/> 
+      </action-outputs>
+      <component-definition> 
+        <jndi><![CDATA[erpi]]></jndi>  
+        <query><![CDATA[SELECT FIRST(DISTINCT CAST("YEAR" as character varying )) as "lastyear" 
+FROM "ERPI"."DATE_DATA"
+where "YEAR" > 1990
+ORDER BY "lastyear"]]></query>  
+        <live><![CDATA[true]]></live> 
+      </component-definition> 
+    </action-definition>
+  
+    <action-definition> 
+      <component-name>JavascriptRule</component-name>
+      <action-type>JavaScript</action-type>
+      <action-inputs> 
+        <query_result type="result-set"/>  
+        <YEAR type="string"/> 
+      </action-inputs>
+      <action-outputs> 
+        <previousYear type="string"/> 
+      </action-outputs>
+      <component-definition> 
+        <script><![CDATA[// query_result is a JavaScriptResultSet
+
+lowYEAR = query_result.getValueAt(0,0);
+if (YEAR == lowYEAR)
+	previousYEAR = YEAR;
+else
+{
+	i = YEAR - 1;		// convert to number less one
+	previousYEAR = i + "";	// convert back to string
+}]]></script> 
+      </component-definition> 
+    </action-definition>
+  
+    <action-definition> 
+      <component-name>MDXLookupRule</component-name>
+      <action-type>OLAP</action-type>
+      <action-inputs> 
+        <CUSTOMER type="string"/>  
+        <PRODUCTCODE type="string"/>  
+        <PERIOD type="string"/>  
+        <PRODUCTCLASS type="string"/>  
+        <KPI type="string"/>  
+        <previousYear type="string"/>  
+        <TIMEDIM type="string"/>
+        <CUBE type="string"/>
+      </action-inputs>
+      <action-resources> 
+        <catalog type="resource"/> 
+      </action-resources>
+      <action-outputs> 
+        <query-results type="result-set" mapping="query_result"/> 
+      </action-outputs>
+      <component-definition> 
+        <jndi><![CDATA[erpi]]></jndi>  
+        <location><![CDATA[mondrian]]></location>  
+        <query><![CDATA[select NON EMPTY {[Measures].[{KPI}]} ON COLUMNS,
+LastPeriods(12, [{TIMEDIM}].[{previousYear}].[{PERIOD}]) ON ROWS
+from [{CUBE}]
+where 
+(
+	[Customer.Customer Code].[{CUSTOMER}],
+	[Product.Product by Class].[{PRODUCTCLASS}],
+      [Product.Product Code].[{PRODUCTCODE}]
+)]]></query> 
+      </component-definition> 
+    </action-definition>
+  
+    <action-definition> 
+      <component-name>ChartComponent</component-name>
+      <action-type>BarChart</action-type>
+      <action-inputs> 
+        <chart-data type="result-set" mapping="query_result"/> 
+      </action-inputs>
+      <action-outputs> 
+        <image-tag type="string"/> 
+      </action-outputs>
+      <component-definition> 
+        <chart-attributes> 
+          <chart-type>BarChart</chart-type>  
+          <by-row>true</by-row>  
+          <title-font> 
+            <font-family>Arial</font-family>  
+            <size>14</size>  
+            <is-bold>false</is-bold> 
+          </title-font>  
+          <border-visible>false</border-visible>  
+          <orientation>vertical</orientation>  
+          <include-legend>true</include-legend>  
+          <is-3D>false</is-3D>  
+          <foreground-alpha>0.75</foreground-alpha>  
+          <background-alpha>1</background-alpha>  
+          <url-template><![CDATA[#]]></url-template>  
+          <url-target>_self</url-target>  
+          <use-base-url>false</use-base-url>  
+          <domain-label-rotation>0.7</domain-label-rotation>  
+          <chart-background type="color">#FFFFFF</chart-background>  
+          <plot-background type="color">#EEE9E9</plot-background>  
+          <domain-includes-zero>false</domain-includes-zero>  
+          <color-palette> 
+            <color>#FF6A6A</color> 
+          </color-palette>  
+          <label-font> 
+            <font-family>Arial</font-family>  
+            <size>8</size>  
+            <is-bold>false</is-bold>  
+            <is-italic>false</is-italic> 
+          </label-font> 
+        </chart-attributes>  
+        <title><![CDATA[KPI by Period, Previous Year]]></title>  
+        <width><![CDATA[300]]></width>  
+        <height><![CDATA[250]]></height> 
+      </component-definition> 
+    </action-definition>
+ 
+  </actions> 
+</action-sequence>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<action-sequence> 
+  <title>Test 2</title>
+  <version>1</version>
+  <logging-level>ERROR</logging-level>
+  <documentation> 
+    <author/>  
+    <description>Empty blank action sequence document</description>  
+    <help/>  
+    <result-type/>  
+    <icon/> 
+  </documentation>
+
+  <inputs/>
+
+  <outputs> 
+    <query_result type="result-set"/>  
+    <count type="string"/>
+    <low type="string"/>
+  </outputs>
+
+  <resources/>
+  
+  <actions> 
+    <action-definition> 
+      <component-name>SQLLookupRule</component-name>
+      <action-type>Relational</action-type>
+      <action-outputs> 
+        <query-result type="result-set" mapping="query_result"/> 
+      </action-outputs>
+      <component-definition> 
+        <jndi><![CDATA[erpi]]></jndi>  
+        <live><![CDATA[true]]></live>  
+        <query><![CDATA[SELECT FIRST(DISTINCT CAST("YEAR" as character varying )) as "lastyear" 
+FROM "ERPI"."DATE_DATA"
+where "YEAR" > 1990
+ORDER BY "lastyear"]]></query>
+      </component-definition> 
+    </action-definition>
+  
+    <action-definition> 
+      <component-name>JavascriptRule</component-name>
+      <action-type>JavaScript</action-type>
+      <action-inputs>
+        <query_result type="result-set"/>
+      </action-inputs>
+      <action-outputs> 
+        <low type="string"/>  
+        <count type="string"/>
+      </action-outputs>
+      <component-definition> 
+        <script><![CDATA[// query_result is a JavaScriptResultSet
+low = query_result.getValueAt(0,0);
+count = query_result.getRowCount();]]></script> 
+      </component-definition> 
+    </action-definition>
+ 
+  </actions> 
+</action-sequence>

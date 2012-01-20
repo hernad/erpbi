@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<action-sequence> 
+  <title>Year Select</title>
+  <version>1</version>
+  <logging-level>ERROR</logging-level>
+  <documentation> 
+    <author/>  
+    <description>Year Select</description>  
+    <help/>  
+    <result-type/>  
+    <icon/> 
+  </documentation>
+
+  <inputs/>
+
+  <outputs> 
+    <years type="result-set"/> 
+  </outputs>
+
+  <resources/>
+  
+  <actions> 
+    <action-definition> 
+      <component-name>SQLLookupRule</component-name>
+      <action-type>Relational</action-type>
+      <action-outputs> 
+        <query-result type="result-set" mapping="years"/> 
+      </action-outputs>
+      <component-definition> 
+        <jndi><![CDATA[erpi]]></jndi>  
+        <live><![CDATA[true]]></live>  
+        <query><![CDATA[SELECT 'All Years' as "id",
+	'All Years' as "value"
+UNION
+SELECT CAST("YEAR" as character varying ) as "id",
+	CAST("YEAR" as character varying) as "value"
+FROM "ERPI"."DATE_DATA"
+where "YEAR" > 1990]]></query> 
+      </component-definition> 
+    </action-definition>
+ 
+  </actions> 
+</action-sequence>

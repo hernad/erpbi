@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<action-sequence> 
+  <name>LineChart3.xaction</name>
+  <title>Order Bar Chart</title>
+  <version>1</version>
+  <logging-level>TRACE</logging-level>
+  <documentation> 
+    <author/>  
+    <description>Orders Bar Chart</description>  
+    <help/>  
+    <result-type/>  
+    <icon/> 
+  </documentation>
+
+  <inputs> 
+    <YEAR type="string"> 
+      <sources> 
+        <request>YEAR</request> 
+      </sources>  
+      <default-value><![CDATA[2007]]></default-value> 
+    </YEAR>  
+    <CUSTOMER type="string"> 
+      <sources> 
+        <request>CUSTOMER</request> 
+      </sources>  
+      <default-value><![CDATA[All Customers by Code]]></default-value> 
+    </CUSTOMER>  
+    <PRODUCTCLASS type="string"> 
+      <sources> 
+        <request>PRODUCTCLASS</request> 
+      </sources>  
+      <default-value><![CDATA[All Products by Class]]></default-value> 
+    </PRODUCTCLASS>  
+    <PRODUCTCODE type="string"> 
+      <sources> 
+        <request>PRODUCTCODE</request> 
+      </sources>  
+      <default-value><![CDATA[All Products by Code]]></default-value> 
+    </PRODUCTCODE>  
+    <PERIOD type="string"> 
+      <sources> 
+        <request>PERIOD</request> 
+      </sources>  
+      <default-value><![CDATA[12]]></default-value> 
+    </PERIOD> 
+  </inputs>
+
+  <outputs> 
+    <!--query_result/-->  
+    <image-tag type="string"/> 
+  </outputs>
+
+  <resources> 
+    <catalog> 
+      <solution-file> 
+        <location>\..\admin\ERPI_SO_Schema.xml</location>  
+        <mime-type>text/plain</mime-type> 
+      </solution-file> 
+    </catalog> 
+  </resources>
+  
+  <actions> 
+    <action-definition> 
+      <component-name>MDXLookupRule</component-name>
+      <action-type>OLAP</action-type>
+      <action-inputs> 
+        <YEAR type="string"/>  
+        <YEAR type="string"/>  
+        <CUSTOMER type="string"/>  
+        <PRODUCTCLASS type="string"/>  
+        <PRODUCTCODE type="string"/>  
+        <PERIOD type="string"/> 
+      </action-inputs>
+      <action-resources> 
+        <catalog type="resource"/> 
+      </action-resources>
+      <action-outputs> 
+        <query-results type="result-set" mapping="query_result"/> 
+      </action-outputs>
+      <component-definition> 
+        <jndi><![CDATA[erpi]]></jndi>  
+        <location><![CDATA[mondrian]]></location>  
+        <query><![CDATA[select NON EMPTY {[Measures].[Amount, Order Gross]} ON COLUMNS,
+/*Hierarchize([Delivery Date].[{YEAR}].Children) ON ROWS*/
+LastPeriods(12, [Order Date.Calendar].[{YEAR}].[{PERIOD}]) ON ROWS
+from [SOOrder]
+where 
+(
+	[Customer.Customer Code].[{CUSTOMER}],
+	[Product.Product by Class].[{PRODUCTCLASS}],
+      [Product.Product Code].[{PRODUCTCODE}]
+)]]></query> 
+      </component-definition> 
+    </action-definition>
+  
+    <action-definition> 
+      <component-name>ChartComponent</component-name>
+      <action-type>Bar Chart</action-type>
+      <action-inputs> 
+        <chart-data type="result-set" mapping="query_result"/> 
+      </action-inputs>
+      <action-outputs> 
+        <image-tag type="string"/> 
+      </action-outputs>
+      <component-definition> 
+        <chart-attributes> 
+          <chart-type>BarChart</chart-type>  
+          <by-row>true</by-row>  
+          <title-font> 
+            <font-family>Arial</font-family>  
+            <size>14</size>  
+            <is-bold>false</is-bold> 
+          </title-font>  
+          <border-visible>false</border-visible>  
+          <orientation>vertical</orientation>  
+          <include-legend>false</include-legend>  
+          <is-3D>false</is-3D>  
+          <foreground-alpha>0.75</foreground-alpha>  
+          <background-alpha>1</background-alpha>  
+          <url-template><![CDATA[#]]></url-template>  
+          <!--paramName>year</paramName-->  
+          <series-name>Revenue</series-name>  
+          <url-target>_self</url-target>  
+          <use-base-url>false</use-base-url>  
+          <domain-label-rotation>0.7</domain-label-rotation>  
+          <chart-background type="color">#F8F8F8</chart-background>  
+          <plot-background type="color">#F8F8F8</plot-background>  
+          <label-font> 
+            <font-family>Arial</font-family>  
+            <size>8</size>  
+            <is-bold>false</is-bold>  
+            <is-italic>false</is-italic> 
+          </label-font>  
+          <color-palette> 
+            <color>#3399FF</color>  
+            <color>#99CCFF</color>  
+            <color>#FFFF00</color>  
+            <color>#00FF00</color>  
+            <color>#006666</color>  
+            <color>#336699</color>  
+            <color>#999933</color>  
+            <color>#993300</color>  
+            <color>#666666</color>  
+            <color>#FFCC66</color>  
+            <color>#6699CC</color>  
+            <color>#663366</color> 
+          </color-palette> 
+        </chart-attributes>  
+        <width><![CDATA[200]]></width>  
+        <height><![CDATA[150]]></height>  
+        <title><![CDATA[Orders]]></title>  
+        <transparency>100</transparency> 
+      </component-definition> 
+    </action-definition>
+ 
+  </actions> 
+</action-sequence>

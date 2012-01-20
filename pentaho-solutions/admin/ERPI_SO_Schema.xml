@@ -1,0 +1,933 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE erpi_entitites [
+<!ENTITY Currency "Currency">
+<!ENTITY PaymentTerms "Payment Terms">
+<!ENTITY CreditLimit "Credit Limit">
+
+<!ENTITY Company "Company">
+<!ENTITY CompanyAll "All Companies by Name">
+<!ENTITY CompanyByName "Company by Name">
+<!ENTITY CompanyName "Company Name">
+<!ENTITY CompanyKey "Company Key">
+<!ENTITY CompanyCodeAll "All Companies by Code">
+<!ENTITY CompanyByCode "Company by Code">
+<!ENTITY CompanyCode "Company Code">
+<!ENTITY CompanyCount "Count, Company">
+
+<!ENTITY BusinessUnit "Business Unit">
+<!ENTITY BusinessUnitAll "All Business Units by Name">
+<!ENTITY BusinessUnitByName "Business Unit by Name">
+<!ENTITY BusinessUnitName "Business Unit Name">
+<!ENTITY BusinessUnitKey "Business Unit Key">
+<!ENTITY BusinessUnitCodeAll "All Business Units by Code">
+<!ENTITY BusinessUnitByCode "Business Unit by Code">
+<!ENTITY BusinessUnitCode "Business Unit Code">
+<!ENTITY BusinessUnitCount "Count, Business Unit">
+
+<!ENTITY CostCenter "Cost Center">
+<!ENTITY CostCenterAll "All Cost Centers by Name">
+<!ENTITY CostCenterByName "Cost Center by Name">
+<!ENTITY CostCenterName "Cost Center Name">
+<!ENTITY CostCenterKey "Cost Center Key">
+<!ENTITY CostCenterCodeAll "All Cost Centers by Code">
+<!ENTITY CostCenterByCode "Cost Center by Code">
+<!ENTITY CostCenterCode "Cost Center Code">
+<!ENTITY CostCenterCount "Count, Cost Center">
+
+<!ENTITY Product "Product">
+<!ENTITY ProductAll "All Products by Name">
+<!ENTITY ProductByName "Product by Name">
+<!ENTITY ProductName "Product Name">
+<!ENTITY ProductKey "Product Key">
+<!ENTITY ProductCodeAll "All Products by Code">
+<!ENTITY ProductByCode "Product by Code">
+<!ENTITY ProductCode "Product Code">
+<!ENTITY ProductCategoryAll "All Products by Category">
+<!ENTITY ProductByCategory "Product by Category">
+<!ENTITY ProductCategory "Product Category">
+<!ENTITY ProductClassAll "All Products by Class">
+<!ENTITY ProductByClass "Product by Class">
+<!ENTITY ProductClass "Product Class">
+<!ENTITY ProductTypeAll "All Products by Type">
+<!ENTITY ProductByType "Product by Type">
+<!ENTITY ProductType "Product Type">
+<!ENTITY ProductCategoryCodeAll "All Products by Category by Code">
+<!ENTITY ProductByCategoryCode "Product by Category by Code">
+<!ENTITY ProductClassCodeAll "All Products by Class by Code">
+<!ENTITY ProductByClassCode "Product by Class by Code">
+<!ENTITY ProductTypeCodeAll "All Products by Type by Code">
+<!ENTITY ProductByTypeCode "Product by Type by Code">
+<!ENTITY ProductCount "Count, Products">
+
+<!ENTITY Division "Division">
+<!ENTITY DivisionAll "All Divisions by Name">
+<!ENTITY DivisionByName "Division by Name">
+<!ENTITY DivisionName "Division Name">
+<!ENTITY DivisionKey "Division Key">
+<!ENTITY DivisionCodeAll "All Divisions by Code">
+<!ENTITY DivisionByCode "Division by Code">
+<!ENTITY DivisionCode "Division Code">
+<!ENTITY DivisionCount "Count, Divisions">
+
+<!ENTITY Customer "Customer">
+<!ENTITY CustomerAll "All Customers by Name">
+<!ENTITY CustomerByName "Customer by Name">
+<!ENTITY CustomerName "Customer Name">
+<!ENTITY CustomerKey "Customer Key">
+<!ENTITY CustomerCodeAll "All Customers by Code">
+<!ENTITY CustomerByCode "Customer by Code">
+<!ENTITY CustomerCode "Customer Code">
+<!ENTITY CustomerCount "Count, Customers">
+
+<!ENTITY AccountRep "Account Rep">
+<!ENTITY AccountRepAll "All Account Reps by Name">
+<!ENTITY AccountRepByName "Account Rep by Name">
+<!ENTITY AccountRepName "Account Rep Name">
+<!ENTITY AccountRepKey "Account Rep Key">
+<!ENTITY AccountRepCodeAll "All Account Reps by Code">
+<!ENTITY AccountRepByCode "Account Rep by Code">
+<!ENTITY AccountRepCode "Account Rep Code">
+<!ENTITY AccountRepCount "Count, Account Reps">
+
+<!ENTITY Order "Order">
+<!ENTITY OrderByKey "Orders by Key">
+<!ENTITY OrderKey "Order Key">
+<!ENTITY OrderKeyAll "All Orders by Key">
+<!ENTITY OrderCount "Count, Orders">
+<!ENTITY OrderAmount "Amount, Order Gross">
+<!ENTITY OrderDate "Date, Order">
+<!ENTITY OrderPromise "Date, Promise">
+
+<!ENTITY OrderLine "Order Line">
+<!ENTITY OrderLineByOrder "OrderLine by Order">
+<!ENTITY OrderLineKey "OrderLine Key">
+<!ENTITY OrderLineAll "All Order Lines by Order">
+
+<!ENTITY Delivery "Delivery">
+<!ENTITY DeliveryByKey "Deliveries by Key">
+<!ENTITY DeliveryKey "Delivery Key">
+<!ENTITY DeliveryKeyAll "All Deliveries by Key">
+<!ENTITY DeliveryCount "Count, Deliveries">
+<!ENTITY DeliveryAmount "Amount, Delivery Gross">
+<!ENTITY DeliveryCostAmount "Amount, Cost Gross">
+
+<!ENTITY DeliveryLine "Delivery Line">
+<!ENTITY DeliveryLineByDelivery "Delivery Line by Delivery">
+<!ENTITY DeliveryLineKey "Delivery Line Key">
+<!ENTITY DeliveryLineAll "All Delivery Lines by Delivery">
+<!ENTITY DeliveryDate "Date, Delivery">
+<!ENTITY DeliveryPromise "Date, Promise">
+<!ENTITY DeliveryProfit "Amount, Profit Gross">
+<!ENTITY DeliveryMargin "Ratio, Gross Profit Margin">
+
+<!ENTITY FiscalPeriod "Fiscal Period">
+<!ENTITY FiscalPeriodCL "Fiscal Period CL">
+<!ENTITY FiscalYear "Fiscal Year">
+<!ENTITY FiscalVariant "Fiscal Variant">
+<!ENTITY FiscalDate "Date">
+<!ENTITY FiscalDaysBegin "Days Begin Date">
+<!ENTITY FiscalDays " Date">
+<!ENTITY FiscalPeriodKey "Fiscal Period Key">
+
+<!ENTITY DatesAllYears "All Years">
+
+<!ENTITY SOOrder "Sales Orders">
+<!ENTITY SODelivery "Sales Deliveries">
+<!ENTITY SOPeriod "Sales By Period">
+
+<!ENTITY SalesDaysO2D "Days, Order to Delivery">
+<!ENTITY SalesImpactO2D "Amount, Impact Order to Delivery">
+<!ENTITY SalesBalanceOrder "Amount, Order Balance">
+<!ENTITY SalesBalanceProfit "Amount, Profit Balance">
+]>
+
+<Schema name="ERPI">
+  <Parameter name="APRValue" type="Numeric" modifiable="false" defaultValue=".065">
+  </Parameter>
+  <Parameter name="CurrentMonth" type="Member" modifiable="false" defaultValue="[Transaction Date].[2010].[10]">
+  </Parameter>
+  <Parameter name="CurrentPeriod" type="Member" modifiable="false" defaultValue="[Fiscal Period].[2010].[10]">
+  </Parameter>
+
+  <Dimension highCardinality="false" name="Company" caption="&Company;">
+    <Hierarchy hasAll="true" allMemberName="All Companies" allMemberCaption="&CompanyAll;" primaryKey="&quot;COMPANY_K&quot;" caption="&CompanyByName;">
+      <Table name="&quot;COMPANY&quot;" schema="&quot;ERPI&quot;">
+      </Table>
+      <Level name="Company Name" caption="&CompanyName;" column="&quot;COMPANY_NAME&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Company Key" caption="&CompanyKey;" column="&quot;COMPANY_K&quot;" type="String">
+        </Property>
+        <Property name="Currency" caption="&Currency;" column="&quot;CURRENCY&quot;" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Company Code" hasAll="true" allMemberName="All Companies by Code" allMemberCaption="&CompanyCodeAll;" primaryKey="&quot;COMPANY_K&quot;" caption="&CompanyByCode;">
+      <Table name="&quot;COMPANY&quot;" schema="&quot;ERPI&quot;">
+      </Table>
+      <Level name="Company Code" caption="&CompanyCode;" column="&quot;COMPANY_NK&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Company Key" caption="&CompanyKey;" column="&quot;COMPANY_K&quot;" type="String">
+        </Property>
+        <Property name="Currency" caption="&Currency;" column="&quot;CURRENCY&quot;" type="String">
+        </Property>
+      </Level>
+      <Level name="Company Name" caption="&CompanyName;" column="&quot;COMPANY_NAME&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Company Key" caption="&CompanyKey;" column="&quot;COMPANY_K&quot;" type="String">
+        </Property>
+        <Property name="Currency" caption="&Currency;" column="&quot;CURRENCY&quot;" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension> 
+  <Dimension highCardinality="false" name="Business Unit" caption ="&BusinessUnit;">
+    <Hierarchy hasAll="true" allMemberName="All Business Units" allMemberCaption="&BusinessUnitAll;" primaryKey="&quot;BUSINESS_UNIT_K&quot;" caption="Business Units by Name">
+      <Table name="&quot;BUSINESS_UNIT&quot;" schema="&quot;ERPI&quot;">
+      </Table>
+      <Level name="Business Unit" caption="&BusinessUnitName;" column="&quot;BUSINESS_UNIT&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Business Unit Key" column="&quot;BUSINESS_UNIT_K&quot;" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Business Unit Code" hasAll="true" allMemberCaption="&BusinessUnitCodeAll;" allMemberName="All Business Units by Code" primaryKey="&quot;BUSINESS_UNIT_K&quot;" caption="&BusinessUnitByCode;">
+      <Table name="&quot;BUSINESS_UNIT&quot;" schema="&quot;ERPI&quot;">
+      </Table>
+      <Level name="Business Unit Code" caption="&BusinessUnitCode;" column="&quot;BUSINESS_UNIT_ID&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Business Unit Key" caption="&BusinessUnitKey;" column="&quot;BUSINESS_UNIT_K&quot;" type="String">
+        </Property>
+      </Level>
+      <Level name="Business Unit" caption= "&BusinessUnitName;" column="&quot;BUSINESS_UNIT&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Business Unit Key" caption="&BusinessUnitKey;" column="&quot;BUSINESS_UNIT_K&quot;" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension highCardinality="false" name="Cost Center" caption="&CostCenter;">
+    <Hierarchy hasAll="true" allMemberName="All Cost Centers" allMemberCaption="&CostCenterAll;" primaryKey="&quot;COST_CENTER_K&quot;" caption="&CostCenterByName;">
+      <Table name="&quot;COST_CENTER&quot;" schema="&quot;ERPI&quot;">
+      </Table>
+      <Level name="Cost Center" caption="&CostCenterName;" column="&quot;DESCRIPTION&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Cost Center Key" caption="&CostCenterKey;" column="&quot;COST_CENTER_K&quot;" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Cost Centers by Code" hasAll="true" allMemberCaption="&CostCenterCodeAll;" allMemberName="All Cost Centers by Code" primaryKey="&quot;COST_CENTER_K&quot;" caption="Cost Centers by Code">
+      <Table name="&quot;COST_CENTER&quot;" schema="&quot;ERPI&quot;">
+      </Table>
+      <Level name="Cost Center Code" caption="&CostCenterCode;" column="&quot;COST_CENTER_ID&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Cost Center Key" column="&quot;COST_CENTER_K&quot;" type="String">
+        </Property>
+      </Level>
+      <Level name="Cost Center" caption="&CostCenterName;" column="&quot;DESCRIPTION&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Cost Center Key" column="&quot;COST_CENTER_K&quot;" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension highCardinality="false" name="Product" caption="&Product;">
+    <Hierarchy hasAll="true" allMemberName="All Products" allMemberCaption="&ProductAll;" primaryKey="&quot;PRODUCT_K&quot;" caption="&ProductByName;">
+      <Table name="&quot;PRODUCT&quot;" schema="&quot;ERPI&quot;">
+      </Table>
+      <Level name="Product" caption="&ProductName;" column="&quot;PRODUCT_NAME&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Product Key" column="&quot;PRODUCT_K&quot;" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Product Code" hasAll="true" allMemberName="All Products by Code" allMemberCaption="&ProductCodeAll;" primaryKey="&quot;PRODUCT_K&quot;" caption="&ProductByCode;">
+      <Table name="&quot;PRODUCT&quot;" schema="&quot;ERPI&quot;">
+      </Table>
+      <Level name="Product Code" caption="&ProductCode;" column="&quot;PRODUCT_NK&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Product Key" caption="&ProductKey;" column="&quot;PRODUCT_K&quot;" type="String">
+        </Property>
+      </Level>
+      <Level name="Product" caption="&ProductName;" column="&quot;PRODUCT_NAME&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Product Key" column="&quot;PRODUCT_K&quot;" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Product by Category" allMemberCaption="&ProductCategoryAll;" hasAll="true" allMemberName="All Products by Category" primaryKey="&quot;PRODUCT_K&quot;" caption="&ProductByCategory;">
+      <Table name="&quot;PRODUCT&quot;" schema="&quot;ERPI&quot;">
+      </Table>
+      <Level name="Category" caption="&ProductCategory;" column="&quot;CATEGORY&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Product" caption="&ProductName;" column="&quot;PRODUCT_NAME&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Product Key" column="&quot;PRODUCT_K&quot;" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Products by Category by Code" allMemberCaption="&ProductCategoryCodeAll;" hasAll="true" allMemberName="All Products by Category by Code" primaryKey="&quot;PRODUCT_K&quot;" caption="&ProductByCategoryCode;">
+      <Table name="&quot;PRODUCT&quot;" schema="&quot;ERPI&quot;">
+      </Table>
+      <Level name="Category" caption="&ProductCategory;" column="&quot;CATEGORY&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Product Code" caption="&ProductCode;" column="&quot;PRODUCT_NK&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Product Key" column="&quot;PRODUCT_K&quot;" type="String">
+        </Property>
+      </Level>
+      <Level name="Product" caption="&ProductName;" column="&quot;PRODUCT_NAME&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Product Key" column="&quot;PRODUCT_K&quot;" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+
+    <Hierarchy name="Product by Class" allMemberCatpion="&ProductClassAll;" hasAll="true" allMemberName="All Products by Class" primaryKey="&quot;PRODUCT_K&quot;" caption="&ProductByClass;">
+      <Table name="&quot;PRODUCT&quot;" schema="&quot;ERPI&quot;">
+      </Table>
+      <Level name="Class" caption="&ProductClass;" column="&quot;CLASS&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Product" caption="&ProductName;" column="&quot;PRODUCT_NAME&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Product Key" column="&quot;PRODUCT_K&quot;" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Products by Class by Code" allMemberCaption="&ProductClassCodeAll;" hasAll="true" allMemberName="All Products by Class by Code" primaryKey="&quot;PRODUCT_K&quot;" caption="&ProductByClassCode;">
+      <Table name="&quot;PRODUCT&quot;" schema="&quot;ERPI&quot;">
+      </Table>
+      <Level name="Class" caption="&ProductClass;" column="&quot;CLASS&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Product Code" caption="&ProductCode;" column="&quot;PRODUCT_NK&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Product Key" column="&quot;PRODUCT_K&quot;" type="String">
+        </Property>
+      </Level>
+      <Level name="Product" caption="&ProductName;" column="&quot;PRODUCT_NAME&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Product Key" column="&quot;PRODUCT_K&quot;" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+
+    <Hierarchy name="Product by Type" allMemberCatpion="&ProductTypeAll;" hasAll="true" allMemberName="All Products by Type" primaryKey="&quot;PRODUCT_K&quot;" caption="&ProductByType;">
+      <Table name="&quot;PRODUCT&quot;" schema="&quot;ERPI&quot;">
+      </Table>
+      <Level name="Type" caption="&ProductType;" column="&quot;TYPE&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Product" caption="&ProductName;" column="&quot;PRODUCT_NAME&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Product Key" caption="&ProductKey;" column="&quot;PRODUCT_K&quot;" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Products by Type by Code" allMemberCatpion="&ProductTypeCodeAll;" hasAll="true" allMemberName="All Products by Type by Code" primaryKey="&quot;PRODUCT_K&quot;" caption="&ProductByTypeCode;">
+      <Table name="&quot;PRODUCT&quot;" schema="&quot;ERPI&quot;">
+      </Table>
+      <Level name="Type" caption="&ProductType;" column="&quot;TYPE&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Product Code" caption="&ProductCode;" column="&quot;PRODUCT_NK&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Product Key" column="&quot;PRODUCT_K&quot;" type="String">
+        </Property>
+      </Level>
+      <Level name="Product" caption="&ProductName;" column="&quot;PRODUCT_NAME&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Product Key" column="&quot;PRODUCT_K&quot;" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+
+
+  </Dimension>
+  <Dimension highCardinality="false" name="Division" caption="&Division;">
+    <Hierarchy hasAll="true" allMemberCaption="&DivisionAll;" allMemberName="All Divisions" primaryKey="&quot;DIVISION_K&quot;" caption="&DivisionByName;">
+      <Table name="&quot;DIVISION&quot;" schema="&quot;ERPI&quot;">
+      </Table>
+      <Level name="Division" caption="&DivisionName;" column="&quot;DIVISION_NAME&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Division Key" caption="&DivisionKey;" column="&quot;DIVISION_K&quot;" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Division Code" allMemberCaption="&DivisionCodeAll;" hasAll="true" allMemberName="All Divisions by Code" primaryKey="&quot;DIVISION_K&quot;" caption="&DivisionByCode;">
+      <Table name="&quot;DIVISION&quot;" schema="&quot;ERPI&quot;">
+      </Table>
+      <Level name="Division Code" catpion="&DivisionCode;" column="&quot;DIVISION_CODE&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Division Key" caption="&DivisionKey;" column="&quot;DIVISION_K&quot;" type="String">
+        </Property>
+      </Level>
+      <Level name="Division" caption="&DivisionName;" column="&quot;DIVISION_NAME&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Division Key" caption="&DivisionKey;" column="&quot;DIVISION_K&quot;" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension highCardinality="false" name="Customer" catpion="&Customer;">
+    <Hierarchy hasAll="true" allMemberCaption="&CustomerAll;" allMemberName="All Customers" primaryKey="&quot;CUSTOMER_K&quot;" caption="&CustomerByName;">
+      <Table name="&quot;CUSTOMER&quot;" schema="&quot;ERPI&quot;">
+      </Table>
+      <Level name="Customer Name" caption="&CustomerName;" column="&quot;CUSTOMER_NAME&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Customer Key" caption="&CustomerKey;" column="&quot;CUSTOMER_K&quot;" type="String">
+        </Property>
+        <Property name="Payment Terms" caption="&PaymentTerms;" column="&quot;PAYMENT_TERMS&quot;" type="String">
+        </Property>
+        <Property name="Credit Limit" caption="&CreditLimit;" column="&quot;CREDIT_LIMIT&quot;" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Customer Code" allMemberCatpion="&CustomerCodeAll;" hasAll="true" allMemberName="All Customers by Code" primaryKey="&quot;CUSTOMER_K&quot;" caption="&CustomerByCode;">
+      <Table name="&quot;CUSTOMER&quot;" schema="&quot;ERPI&quot;">
+      </Table>
+      <Level name="Customer Code" catpion="&CustomerCode;" column="&quot;CUSTOMER_NK&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Customer Key" caption="&CustomerKey;" column="&quot;CUSTOMER_K&quot;" type="String">
+        </Property>
+        <Property name="Payment Terms" caption="&PaymentTerms;" column="&quot;PAYMENT_TERMS&quot;" type="String">
+        </Property>
+        <Property name="Credit Limit" caption="&CreditLimit;" column="&quot;CREDIT_LIMIT&quot;" type="String">
+        </Property>
+      </Level>
+      <Level name="Customer Name" caption="&CustomerName;" column="&quot;CUSTOMER_NAME&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Customer Key" caption="&CustomerKey;" column="&quot;CUSTOMER_K&quot;" type="String">
+        </Property>
+        <Property name="Payment Terms" caption="&PaymentTerms;" column="&quot;PAYMENT_TERMS&quot;" type="String">
+        </Property>
+        <Property name="Credit Limit" caption="&CreditLimit;" column="&quot;CREDIT_LIMIT&quot;" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension highCardinality="false" name="Account Rep" catpion="&AccountRep;">
+    <Hierarchy hasAll="true" allMemberCaption="&AccountRepAll;" allMemberName="All Account Reps" primaryKey="&quot;ACCOUNT_REP_K&quot;" caption="&AccountRepByName;">
+      <Table name="&quot;ACCOUNT_REP&quot;" schema="&quot;ERPI&quot;">
+      </Table>
+      <Level name="Account Rep Name" caption="&AccountRepName;" column="&quot;ACCOUNT_REP_NAME&quot;" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy hasAll="true" name="Account Reps by Code" allMemberCaption="&AccountRepCodeAll;" allMemberName="All Account Reps by Code" primaryKey="&quot;ACCOUNT_REP_K&quot;" caption="&AccountRepByCode;">
+      <Table name="&quot;ACCOUNT_REP&quot;" schema="&quot;ERPI&quot;">
+      </Table>
+      <Level name="Account Rep Code" caption="&AccountRepCode;" column="&quot;ACCOUNT_REP_NO&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Account Rep Key" caption="&AccountRepKey;" column="&quot;ACCOUNT_REP_K&quot;" type="String">
+        </Property>
+      </Level>
+      <Level name="Account Rep Name" caption="&AccountRepName;" column="&quot;ACCOUNT_REP_NAME&quot;" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Account Rep Key" caption="&AccountRepKey;" column="&quot;ACCOUNT_REP_K&quot;" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" highCardinality="false" name="Order" caption="&Order;">
+    <Hierarchy hasAll="true" allMemberCaption="&OrderKeyAll;" allMemberName="All Orders" primaryKey="&quot;ORDER_K&quot;" caption ="&OrderByKey;">
+      <Table name="&quot;SO_ORDER&quot;" schema="&quot;ERPI&quot;">
+      </Table>
+      <Level name="Order" caption="&OrderKey;" column="&quot;ORDER_ID&quot;" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+    <Dimension type="StandardDimension" highCardinality="false" name="Delivery" caption="&Delivery;">
+    <Hierarchy hasAll="true" allMemberCaption="&DeliveryKeyAll;" allMemberName="All Delivery Lines by Delivery"  primaryKey="&quot;DELIVERY_DOC_K&quot;" caption="&DeliveryByKey;">
+      <Table name="&quot;SO_DELIVERY_DOC&quot;" schema="&quot;ERPI&quot;">
+      </Table>
+      <Level name="Delivery" caption="&DeliveryKey;" column="&quot;DELIVERY_DOC_ID&quot;" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" highCardinality="false" name="Order Line Item" caption="&OrderLine;">
+    <Hierarchy hasAll="true"  allMemberCaption="&OrderLineAll;"  allMemberName="All Order Lines"  primaryKey="&quot;ORDER_LINE_ITEM_K&quot;"  caption="&OrderLineByOrder;" >
+      <Table name="&quot;SO_LINE_ITEM&quot;" schema="&quot;ERPI&quot;">
+      </Table>
+      <Level name="Order"  caption="&OrderKey;" column="&quot;ORDER_ID&quot;" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Order Line Item" caption="&OrderLineKey;" column="&quot;ORDER_LINE_ITEM_ID&quot;" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+    <Dimension type="StandardDimension" highCardinality="false" name="Delivery Line Item" caption="&DeliveryLine;">
+    <Hierarchy hasAll="true" allMemberCaption="&DeliveryLineAll;" allMemberName="All Delivery Lines by Delivery" primaryKey="&quot;DELIVERY_LINE_ITEM_K&quot;" caption="&DeliveryLineByDelivery;">
+      <Table name="&quot;SO_DELIVERY_LINE_ITEM&quot;" schema="&quot;ERPI&quot;">
+      </Table>
+      <Level name="Delivery" caption="&DeliveryKey;" column="&quot;DELIVERY_DOC_ID&quot;" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Delivery Line Item" caption="&DeliveryLineKey;" column="&quot;DELIVERY_LINE_ITEM_ID&quot;" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension highCardinality="false" name="Fiscal Period" caption="&FiscalPeriod;">
+    <Hierarchy name="Fiscal Period CL" hasAll="true" allMemberName="All Years" allMemberCaption="&DatesAllYears;" primaryKey="&quot;FISCAL_PERIOD_K&quot;" caption="&FiscalPeriodCL;">
+      <Table name="&quot;FISCAL_PERIODS_CL&quot;" schema="&quot;ERPI&quot;">
+      </Table>
+      <Level name="Fiscal Year" caption="&FiscalYear;" column="&quot;FISCAL_YEAR&quot;" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Property name="Fiscal Variant" caption="&FiscalVariant;" column="&quot;FISCAL_VARIANT&quot;" type="String">
+        </Property>
+      </Level>
+      <Level name="Fiscal Period" caption="&FiscalPeriod;" column="&quot;FISCAL_PERIOD&quot;" type="Numeric" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        <Property name="Fiscal Variant" caption="&FiscalVariant;" column="&quot;FISCAL_VARIANT&quot;" type="String">
+        </Property>
+        <Property name="Date" caption="&FiscalDate;" column="&quot;END_DATE&quot;" type="String">
+        </Property>
+        <Property name="Days Date" caption="&FiscalDays;" column="&quot;END_DAYS_DATE&quot;" type="Numeric">
+        </Property>
+        <Property name="JBegin Days Date" caption="&FiscalDaysBegin;" column="&quot;BEGIN_DAYS_DATE&quot;" type="Numeric">
+        </Property>
+        <Property name="Fiscal Period Key" caption="&FiscalPeriodKey;" column="&quot;FISCAL_PERIOD_K&quot;" type="Numeric">
+        </Property>
+        <Property name="Fiscal Year" caption="&FiscalYear;" column="&quot;FISCAL_YEAR&quot;" type="Numeric">
+        </Property>
+        <Property name="Fiscal Period" caption="&FiscalPeriod;" column="&quot;FISCAL_PERIOD&quot;" type="Numeric">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+
+    <Cube name="SOOrder" cache="true" enabled="true" caption="&SOOrder;">
+    <Table name="&quot;SALES_ORDER_FACTS&quot;" schema="&quot;ERPI&quot;">
+    </Table>
+    <DimensionUsage source="Company" name="Company" caption="&Company;"  foreignKey="&quot;COMPANY_K&quot;" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Division" name="Division" caption="&Division;" foreignKey="&quot;DIVISION_K&quot;" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Business Unit" name="Business Unit" caption="&BusinessUnit;"  foreignKey="&quot;BUSINESS_UNIT_K&quot;" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Customer" name="Customer" caption="&Customer;"  foreignKey="&quot;CUSTOMER_K&quot;" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Cost Center" name="Cost Center" caption="&CostCenter;" foreignKey="&quot;COST_CENTER_K&quot;" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Order" name="Order" caption="&Order;"  foreignKey="&quot;ID_DOCUMENT_K&quot;" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Order Line Item" name="Order Line Item" caption="&OrderLine;"  foreignKey="&quot;LINE_K&quot;" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Account Rep" name="Account Rep" caption="&AccountRep;"  foreignKey="&quot;ACCOUNT_REP_K&quot;" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Product" caption="&Product;" name="Product" foreignKey="ITEM_K">
+    </DimensionUsage>
+    <Dimension type="TimeDimension" foreignKey="&quot;ISSUE_DATE_K&quot;" highCardinality="false" name="Order Date">
+      <Hierarchy name="Calendar" hasAll="true" allMemberName="All Years" allMemberCaption="&DatesAllYears;" primaryKey="DAYS_DATE" caption="Calendar">
+        <Table name="&quot;DATE_DATA_CL&quot;" schema="&quot;ERPI&quot;" alias="Delivery_Date_CL">
+        </Table>
+        <Level name="Year" column="&quot;YEAR&quot;" type="Numeric" uniqueMembers="true" levelType="TimeYears" hideMemberIf="Never" caption="Year">
+        </Level>
+        <Level name="Period" column="&quot;PERIOD&quot;" type="Numeric" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Period">
+          <Property name="Month" column="&quot;PERIOD&quot;" type="Numeric">
+          </Property>
+        </Level>
+        <Level name="Date" type="Date" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Date">
+          <KeyExpression>
+            <SQL dialect="mssql">
+              <![CDATA[SUBSTRING(CONVERT(CHAR, "THE_DATE", 120), 1, 10)]]>
+            </SQL>
+            <SQL dialect="generic">
+              <![CDATA["THE_DATE"]]>
+            </SQL>
+          </KeyExpression>
+          <Property name="Date" column="&quot;THE_DATE&quot;" type="String">
+          </Property>
+          <Property name="Days Date" column="&quot;DAYS_DATE&quot;" type="Numeric">
+          </Property>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="TimeDimension" foreignKey="&quot;PROMISE_DATE_K&quot;" highCardinality="false" name="Promise Date">
+      <Hierarchy name="Calendar" hasAll="true" allMemberName="All Years" allMemberCaption="&DatesAllYears;" primaryKey="DAYS_DATE" caption="Calendar">
+        <Table name="&quot;DATE_DATA_CL&quot;" schema="&quot;ERPI&quot;" alias="Promise_Date_CL">
+        </Table>
+        <Level name="Year" column="&quot;YEAR&quot;" type="Numeric" uniqueMembers="true" levelType="TimeYears" hideMemberIf="Never" caption="Year">
+        </Level>
+        <Level name="Period" column="&quot;PERIOD&quot;" type="Numeric" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Period">
+          <Property name="Month" column="&quot;PERIOD&quot;" type="Numeric">
+          </Property>
+        </Level>
+        <Level name="Date" type="Date" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Date">
+          <KeyExpression>
+            <SQL dialect="mssql">
+              <![CDATA[SUBSTRING(CONVERT(CHAR, "THE_DATE", 120), 1, 10)]]>
+            </SQL>
+            <SQL dialect="generic">
+              <![CDATA["THE_DATE"]]>
+            </SQL>
+          </KeyExpression>
+          <Property name="Date" column="&quot;THE_DATE&quot;" type="String">
+          </Property>
+          <Property name="Days Date" column="&quot;DAYS_DATE&quot;" type="Numeric">
+          </Property>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+
+    <Measure name="Amount, Order Gross" caption="&OrderAmount;" column="&quot;AMOUNT&quot;" formatString="#,##0.00" aggregator="sum">
+    </Measure>
+    <Measure name="Count, Orders" caption="&OrderCount;"  column="&quot;ID_DOCUMENT_K&quot;" formatString="#,###" aggregator="distinct-count">
+    </Measure>
+    <Measure name="Count, Companies" catpion="&CompanyCount;" column="&quot;COMPANY_K&quot;" formatString="#,###" aggregator="distinct-count">
+    </Measure>
+    <Measure name="Count, Business Unit" caption="&BusinessUnitCount;" column="&quot;BUSINESS_UNIT_K&quot;" formatString="#,###" aggregator="distinct-count">
+    </Measure>
+    <Measure name="Count, Customer"  caption="&CustomerCount;"  column="&quot;CUSTOMER_K&quot;" formatString="#,###" aggregator="distinct-count">
+    </Measure>
+    <Measure name="Days Order Date"  column="&quot;ISSUE_DATE_K&quot;" formatString="########" aggregator="min" visible="false">
+    </Measure>
+    <Measure name="Days Promise Date" column="&quot;PROMISE_DATE_K&quot;" formatString="########" aggregator="max" visible="false">
+    </Measure>
+
+<!--
+        For dates if we have not date or we are not at the order level, return null
+-->
+    <CalculatedMember name="Date, Order" caption="&OrderDate;" dimension="Measures" visible="true">
+      <Formula>
+        <![CDATA[
+            iif ([Order].CurrentMember.level.ordinal <> 1 AND [Order Line Item].level.ordinal <> 1 AND [Order Line Item].level.ordinal <> 2 , "",
+              iif([Measures].[Days Order Date] is empty,  cast (null as string),
+                iif([Measures].[Days Order Date] = 0, "",
+                getDateString(cast([Measures].[Days Order Date] as string)))))]]>
+      </Formula>
+    </CalculatedMember>
+    <CalculatedMember name="Date, Promise" caption="&OrderPromise;" dimension="Measures" visible="true">
+      <Formula>
+        <![CDATA[
+            iif ([Order].CurrentMember.level.ordinal <> 1 AND [Order Line Item].level.ordinal <> 1 AND [Order Line Item].level.ordinal <> 2 , "",
+              iif([Measures].[Days Promise Date] is empty, cast (null as string),
+                iif([Measures].[Days Promise Date] = 0, "",
+                getDateString(cast([Measures].[Days Promise Date] as string)))))]]>
+      </Formula>
+    </CalculatedMember>
+  </Cube>
+
+
+  <Cube name="SODelivery" cache="true" enabled="true" caption="&SODelivery;">
+    <Table name="&quot;SALES_DELIVERY_FACTS&quot;" schema="&quot;ERPI&quot;">
+    </Table>
+    <DimensionUsage source="Company" name="Company" caption="&Company;"  foreignKey="&quot;COMPANY_K&quot;" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Division" name="Division" caption="&Division;" foreignKey="&quot;DIVISION_K&quot;" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Business Unit" name="Business Unit" caption="&BusinessUnit;" foreignKey="&quot;BUSINESS_UNIT_K&quot;" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Customer" name="Customer" cpation="&Customer;" foreignKey="&quot;CUSTOMER_K&quot;" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Cost Center" name="Cost Center" caption="&CostCenter;" foreignKey="&quot;COST_CENTER_K&quot;" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Order" name="Order" caption="&Order;" foreignKey="&quot;ID_DOCUMENT_K&quot;" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Delivery" name="Delivery" caption="&Delivery;" foreignKey="&quot;ID_TRANS_DOC_K&quot;" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Delivery Line Item" name="Delivery Line Item" caption="&DeliveryLine;"  foreignKey="&quot;LINE_K&quot;" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Account Rep" name="Account Rep" caption="&AccountRep;" foreignKey="&quot;ACCOUNT_REP_K&quot;" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Product" name="Product" caption="&Product;" foreignKey="ITEM_K">
+    </DimensionUsage>
+    <Dimension type="TimeDimension" foreignKey="&quot;ISSUE_DATE_K&quot;" highCardinality="false" name="Delivery Date">
+      <Hierarchy name="Calendar" hasAll="true" allMemberName="All Years" allMemberCaption="&DatesAllYears;" primaryKey="DAYS_DATE" caption="Calendar">
+        <Table name="&quot;DATE_DATA_CL&quot;" schema="&quot;ERPI&quot;" alias="Delivery_Date_CL">
+        </Table>
+        <Level name="Year" column="&quot;YEAR&quot;" type="Numeric" uniqueMembers="true" levelType="TimeYears" hideMemberIf="Never" caption="Year">
+        </Level>
+        <Level name="Period" column="&quot;PERIOD&quot;" type="Numeric" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Period">
+          <Property name="Month" column="&quot;PERIOD&quot;" type="Numeric">
+          </Property>
+        </Level>
+        <Level name="Date" type="Date" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Date">
+          <KeyExpression>
+            <SQL dialect="mssql">
+              <![CDATA[SUBSTRING(CONVERT(CHAR, "THE_DATE", 120), 1, 10)]]>
+            </SQL>
+            <SQL dialect="generic">
+              <![CDATA["THE_DATE"]]>
+            </SQL>
+          </KeyExpression>
+          <Property name="Date" column="&quot;THE_DATE&quot;" type="String">
+          </Property>
+          <Property name="Days Date" column="&quot;DAYS_DATE&quot;" type="Numeric">
+          </Property>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="TimeDimension" foreignKey="&quot;PROMISE_DATE_K&quot;" highCardinality="false" name="Promise Date">
+      <Hierarchy name="Calendar" hasAll="true" allMemberName="All Years" allMemberCaption="&DatesAllYears;" primaryKey="DAYS_DATE" caption="Calendar">
+        <Table name="&quot;DATE_DATA_CL&quot;" schema="&quot;ERPI&quot;" alias="Promise_Date_CL">
+        </Table>
+        <Level name="Year" column="&quot;YEAR&quot;" type="Numeric" uniqueMembers="true" levelType="TimeYears" hideMemberIf="Never" caption="Year">
+        </Level>
+        <Level name="Period" column="&quot;PERIOD&quot;" type="Numeric" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Period">
+          <Property name="Month" column="&quot;PERIOD&quot;" type="Numeric">
+          </Property>
+        </Level>
+        <Level name="Date" type="Date" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Date">
+          <KeyExpression>
+            <SQL dialect="mssql">
+              <![CDATA[SUBSTRING(CONVERT(CHAR, "THE_DATE", 120), 1, 10)]]>
+            </SQL>
+            <SQL dialect="generic">
+              <![CDATA["THE_DATE"]]>
+            </SQL>
+          </KeyExpression>
+          <Property name="Date" column="&quot;THE_DATE&quot;" type="String">
+          </Property>
+          <Property name="Days Date" column="&quot;DAYS_DATE&quot;" type="Numeric">
+          </Property>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+
+    <Measure name="Amount, Delivery Gross" caption="&DeliveryAmount;" column="&quot;AMOUNT&quot;" formatString="#,##0.00" aggregator="sum">
+    </Measure>
+    <Measure name="Amount, Cost Gross" caption="&DeliveryCostAmount;" column="&quot;COST&quot;" formatString="#,##0.00" aggregator="sum">
+    </Measure>
+    <Measure name="Count, Orders" caption="&OrderCount;" column="&quot;ID_DOCUMENT_K&quot;" formatString="#,###" aggregator="distinct-count">
+    </Measure>
+    <Measure name="Count, Deliveries" caption="&DeliveryCount;" column="&quot;ID_TRANS_DOC_K&quot;" formatString="#,###" aggregator="distinct-count">
+    </Measure>
+    <Measure name="Count, Companies" caption="&CompanyCount;" column="&quot;COMPANY_K&quot;" formatString="#,###" aggregator="distinct-count">
+    </Measure>
+    <Measure name="Count, Business Unit" caption="&BusinessUnitCount;" column="&quot;BUSINESS_UNIT_K&quot;" formatString="#,###" aggregator="distinct-count">
+    </Measure>
+    <Measure name="Count, Customer" caption="&CustomerCount;" column="&quot;CUSTOMER_K&quot;" formatString="#,###" aggregator="distinct-count">
+    </Measure>
+    <Measure name="Days Delivery Date" column="&quot;ISSUE_DATE_K&quot;" formatString="Standard" aggregator="min" visible="false">
+    </Measure>
+    <Measure name="Days Promise Date" column="&quot;PROMISE_DATE_K&quot;" formatString="Standard" aggregator="max" visible="false">
+    </Measure>
+
+<!--
+        For dates if we have not date or we are not at the order level, return null
+-->
+    <CalculatedMember name="Date, Delivery" caption="&DeliveryDate;" dimension="Measures" visible="true">
+      <Formula>
+        <![CDATA[
+            iif ([Delivery].CurrentMember.level.ordinal <> 1 AND [Delivery Line Item].level.ordinal <> 1 AND [Delivery Line Item].level.ordinal <> 2 , "",
+              iif([Measures].[Days Delivery Date] is empty,  cast (null as string),
+                iif([Measures].[Days Delivery Date] = 0, "",
+                getDateString(cast([Measures].[Days Delivery Date] as string)))))]]>
+      </Formula>
+    </CalculatedMember>
+    <CalculatedMember name="Date, Promise" caption="&DeliveryPromise;" dimension="Measures" visible="true">
+      <Formula>
+        <![CDATA[
+            iif ([Delivery].CurrentMember.level.ordinal <> 1 AND [Delivery Line Item].level.ordinal <> 1 AND [Delivery Line Item].level.ordinal <> 2 , "",
+              iif([Measures].[Days Promise Date] is empty, cast (null as string),
+                iif([Measures].[Days Promise Date] = 0, "",
+                getDateString(cast([Measures].[Days Promise Date] as string)))))]]>
+      </Formula>
+    </CalculatedMember>
+  <CalculatedMember name="Amount, Profit Gross" caption="&DeliveryProfit;" dimension="Measures" visible="true">
+	<Formula>
+        [Measures].[Amount, Delivery Gross] - [Measures].[Amount, Cost Gross]
+	</Formula>
+    <CalculatedMemberProperty name="FORMAT_STRING" value="#,##0.00"/>
+  </CalculatedMember>
+
+   <CalculatedMember name="Ratio, Gross Profit Margin" caption="&DeliveryMargin;" dimension="Measures" visible="true">
+	<Formula> 
+            iif([Measures].[Amount, Delivery Gross] &lt;= 0, null,
+                    [Measures].[Amount, Profit Gross] / [Measures].[Amount, Delivery Gross])
+	</Formula>
+    <CalculatedMemberProperty name="FORMAT_STRING" value="###0.00"/>
+  </CalculatedMember>
+
+
+  </Cube>
+
+  <Cube name="SOByPeriod" cache="true" enabled="true" caption="&SOPeriod;">
+    <Table name="&quot;SO_FACTS_BY_PERIOD&quot;" schema="&quot;ERPI&quot;">
+    </Table>
+    <DimensionUsage source="Company" caption="&Company;" name="Company" foreignKey="&quot;COMPANY_K&quot;" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Division" name="Division" caption="&Division;" foreignKey="&quot;DIVISION_K&quot;" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Business Unit" name="Business Unit" caption="&BusinessUnit;" foreignKey="&quot;BUSINESS_UNIT_K&quot;" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Customer" name="Customer" caption="&Customer;" foreignKey="&quot;CUSTOMER_K&quot;" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Cost Center" name="Cost Center" caption="&CostCenter;" foreignKey="&quot;COST_CENTER_K&quot;" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Order" name="Order" actpion="&Order;" foreignKey="&quot;ID_DOCUMENT_K&quot;" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Account Rep" caption="&AccountRep;" name="Account Rep" foreignKey="&quot;ACCOUNT_REP_K&quot;" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Product" caption="&Product;" name="Product" foreignKey="ITEM_K">
+    </DimensionUsage>
+    <DimensionUsage source="Fiscal Period" name="Fiscal Period" caption="&FiscalPeriod;" foreignKey="&quot;FISCAL_PERIOD_K&quot;" highCardinality="false">
+    </DimensionUsage>
+
+    <Measure name="Count, Orders" formatString="#,###" aggregator="distinct-count" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[(case when "SO_FACTS_BY_PERIOD"."ID_DOCUMENT_K" <> 0 then
+                        "SO_FACTS_BY_PERIOD"."ID_DOCUMENT_K" ELSE NULL END)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+
+    <Measure name="Count, Companies" formatString="#,###" aggregator="distinct-count" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[(case when "SO_FACTS_BY_PERIOD"."COMPANY_K" <> 0 then
+                        "SO_FACTS_BY_PERIOD"."COMPANY_K" ELSE NULL END)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Count, Business Units" formatString="#,###" aggregator="distinct-count" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[(case when "SO_FACTS_BY_PERIOD"."BUSINESS_UNIT_K" <> 0 then
+                        "SO_FACTS_BY_PERIOD"."BUSINESS_UNIT_K" ELSE NULL END)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+    <Measure name="Count, Customers" formatString="#,###" aggregator="distinct-count" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[(case when "SO_FACTS_BY_PERIOD"."CUSTOMER_K" <> 0 then
+                        "SO_FACTS_BY_PERIOD"."CUSTOMER_K" ELSE NULL END)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+
+    <Measure name="Days Order Date" column="&quot;ISSUE_DATE_K&quot;" formatString="Standard" aggregator="sum" visible="false">
+    </Measure>
+    <Measure name="Days Delivery Date" column="&quot;DELIVERY_DATE_K&quot;" formatString="Standard" aggregator="sum" visible="false">
+    </Measure>
+    <Measure name="Days End Date" column="&quot;ENDDATE&quot;" formatString="Standard" aggregator="sum" visible="false">
+    </Measure>
+    <Measure name="Delivery Sum" column="&quot;DELIVERY SUM&quot;" formatString="#,##0.00" aggregator="sum" visible="false">
+    </Measure>
+    <Measure name="Order Sum" column="&quot;ORDER SUM&quot;" formatString="#,##0.00" aggregator="sum" visible="false">
+    </Measure>
+    <Measure name="Cost Sum" column="&quot;COST SUM&quot;" formatString="#,##0.00" aggregator="sum" visible="false">
+    </Measure>
+
+
+
+    <!--    For measures in a period cube we can't simply aggergate by sum.
+
+            If we are at the year level, sum for the last period of the year
+            else if we are at the period level, sum for that period
+                    else sum the counts for the currentMonth.
+    -->
+   <CalculatedMember name="O2D Days" caption="&SalesDaysO2D;" dimension="Measures" visible="false">
+      <Formula>
+        <![CDATA[
+           [Measures].[Days End Date] - [Measures].[Days Order Date]
+        ]]>
+      </Formula>
+    <CalculatedMemberProperty name="FORMAT_STRING" value="#,##0.00"/>
+    </CalculatedMember>
+
+    <CalculatedMember name="Days, Order to Delivery" caption="&SalesDaysO2D;" dimension="Measures" visible="true">
+      <Formula>
+        <![CDATA[iif(1 > 0 and [Fiscal Period].CurrentMember.level.ordinal = 1,
+		sum(tail(descendants([Fiscal Period].CurrentMember,[Fiscal Period].[Fiscal Period])), [Measures].[Days, Order to Delivery]),
+		iif(2 > 0 and [Fiscal Period].CurrentMember.level.ordinal = 2,
+              [Measures].[O2D Days] / [Measures].[Count, Orders],
+        /* default Extract Date */
+        cast(avg({ParamRef("CurrentPeriod")},
+            [Measures].[O2D Days]) as numeric)))]]>
+      </Formula>
+    </CalculatedMember>
+
+   <CalculatedMember name="Amount, O2D Impact" caption="&SalesImpactO2D;" dimension="Measures" visible="true">
+	<Formula>
+        [Measures].[Days, Order to Delivery] * ParamRef("APRValue")
+	</Formula>
+    <CalculatedMemberProperty name="FORMAT_STRING" value="#,##0.00"/>
+  </CalculatedMember>
+
+<!--
+        For dates if we have no date or we are not at the order level, return null
+-->
+
+    <CalculatedMember name="Date, Order" caption="&OrderDate;" dimension="Measures" visible="true">
+      <Formula>
+        <![CDATA[
+            iif ([Order].CurrentMember.level.ordinal <> 1, "",
+              iif([Measures].[Days Order Date] is empty, cast (null as string),
+                iif([Measures].[Days Order Date] = 0, "",
+                getDateString(cast([Measures].[Days Order Date] as string)))))]]>
+      </Formula>
+    </CalculatedMember>
+
+    <CalculatedMember name="Date, Last Delivery" caption="&DeliveryDate;" dimension="Measures" visible="true">
+      <Formula>
+        <![CDATA[
+            iif ([Order].CurrentMember.level.ordinal <> 1, "",
+              iif([Measures].[Days Delivery Date] is empty, cast (null as string),
+                iif([Measures].[Days Delivery Date] = 0, "",
+                getDateString(cast([Measures].[Days Delivery Date] as string)))))]]>
+      </Formula>
+    </CalculatedMember>
+
+    <CalculatedMember name="Sum, Delivery" caption="&DeliveryAmount;" dimension="Measures" visible="true">
+      <Formula>
+        <![CDATA[iif(1 > 0 and [Fiscal Period].CurrentMember.level.ordinal = 1,
+			sum(tail(descendants([Fiscal Period].CurrentMember,[Fiscal Period].[Fiscal Period])), [Measures].[Delivery Sum]),
+		iif(2 > 0 and [Fiscal Period].CurrentMember.level.ordinal = 2,
+            [Measures].[Delivery Sum],
+        /* default Extract Date */
+        sum({ParamRef("CurrentPeriod")},
+            [Measures].[Delivery Sum])))]]>
+      </Formula>
+      <CalculatedMemberProperty name="FORMAT_STRING" value="#,##0.00">
+      </CalculatedMemberProperty>
+    </CalculatedMember>
+
+    <CalculatedMember name="Order Balance"  dimension="Measures" visible="false">
+	<Formula>
+        <![CDATA[
+           iif([Measures].[Delivery Sum] > [Measures].[Order Sum], 0, [Measures].[Order Sum] - [Measures].[Delivery Sum])
+        ]]>
+	</Formula>
+    <CalculatedMemberProperty name="FORMAT_STRING" value="#,##0.00"/>
+    </CalculatedMember>
+
+    <CalculatedMember name="Balance, Order" caption="&SalesBalanceOrder;" dimension="Measures" visible="true">
+      <Formula>
+        <![CDATA[iif(1 > 0 and [Fiscal Period].CurrentMember.level.ordinal = 1,
+			sum(tail(descendants([Fiscal Period].CurrentMember,[Fiscal Period].[Fiscal Period])), [Measures].[Order Balance]),
+		iif(2 > 0 and [Fiscal Period].CurrentMember.level.ordinal = 2,
+            [Measures].[Order Balance],
+        /* default Extract Date */
+        sum({ParamRef("CurrentPeriod")},
+            [Measures].[Order Balance])))]]>
+      </Formula>
+      <CalculatedMemberProperty name="FORMAT_STRING" value="#,##0.00">
+      </CalculatedMemberProperty>
+    </CalculatedMember>
+
+    <CalculatedMember name="Sum, Order" caption="&OrderAmount;" dimension="Measures" visible="true">
+      <Formula>
+        <![CDATA[iif(1 > 0 and [Fiscal Period].CurrentMember.level.ordinal = 1,
+			sum(tail(descendants([Fiscal Period].CurrentMember,[Fiscal Period].[Fiscal Period])), [Measures].[Order Sum]),
+		iif(2 > 0 and [Fiscal Period].CurrentMember.level.ordinal = 2,
+            [Measures].[Order Sum],
+        /* default Extract Date */
+        sum({ParamRef("CurrentPeriod")},
+            [Measures].[Order Sum])))]]>
+      </Formula>
+      <CalculatedMemberProperty name="FORMAT_STRING" value="#,##0.00">
+      </CalculatedMemberProperty>
+    </CalculatedMember>
+
+    <CalculatedMember name="Sum, Cost" caption="&DeliveryCostAmount;" dimension="Measures" visible="true">
+      <Formula>
+        <![CDATA[iif(1 > 0 and [Fiscal Period].CurrentMember.level.ordinal = 1,
+			sum(tail(descendants([Fiscal Period].CurrentMember,[Fiscal Period].[Fiscal Period])), [Measures].[Cost Sum]),
+		iif(2 > 0 and [Fiscal Period].CurrentMember.level.ordinal = 2,
+            [Measures].[Cost Sum],
+        /* default Extract Date */
+        sum({ParamRef("CurrentPeriod")},
+            [Measures].[Cost Sum])))]]>
+      </Formula>
+      <CalculatedMemberProperty name="FORMAT_STRING" value="#,##0.00">
+      </CalculatedMemberProperty>
+    </CalculatedMember>
+
+    <CalculatedMember name="Profit Balance" dimension="Measures" visible="false">
+	<Formula>
+		[Measures].[Delivery Sum] - [Measures].[Cost Sum]
+	</Formula>
+    <CalculatedMemberProperty name="FORMAT_STRING" value="#,##0.00"/>
+    </CalculatedMember>
+
+    <CalculatedMember name="Balance, Profit" caption="&SalesBalanceProfit;" dimension="Measures" visible="true">
+      <Formula>
+        <![CDATA[iif(1 > 0 and [Fiscal Period].CurrentMember.level.ordinal = 1,
+			sum(tail(descendants([Fiscal Period].CurrentMember,[Fiscal Period].[Fiscal Period])), [Measures].[Profit Balance]),
+		iif(2 > 0 and [Fiscal Period].CurrentMember.level.ordinal = 2,
+            [Measures].[Profit Balance],
+        /* default Extract Date */
+        sum({ParamRef("CurrentPeriod")},
+            [Measures].[Profit Balance])))]]>
+      </Formula>
+      <CalculatedMemberProperty name="FORMAT_STRING" value="#,##0.00">
+      </CalculatedMemberProperty>
+    </CalculatedMember>
+
+    <CalculatedMember name="Date, Extract Date" dimension="Measures" visible="true">
+      <Formula>
+        <![CDATA["ExtractDate"]]>
+      </Formula>
+    </CalculatedMember>
+
+  </Cube>
+  <UserDefinedFunction name="getDateString" className="com.erpi.mdxudf.GetDateInfo">
+  </UserDefinedFunction>
+</Schema>

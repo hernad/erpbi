@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdf>
+	<title>Delivery KPI Dashboard</title>
+	<description>Delivery KPI Dashboard</description>
+	<icon></icon>
+	<template>deliveryTemplate.html</template>
+	<style>SOKPIDeliveryMantle</style>
+</cdf>

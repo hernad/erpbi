@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+   <title>Sales Order Dashboard</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   <meta name="description" content="My Site" />
+   <meta name="keywords" content="key, words" />  
+   <meta name="Distribution" content="Global" />
+   <meta name="Robots" content="index,follow" />
+
+    <link rel="stylesheet" type="text/css" href="erpbi/styles/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="erpbi/styles/stylemenu.css"/>
+    <link rel="stylesheet" type="text/css" href="erpbi/scripts/jsTree/tree_component.css" />
+    <script type="text/javascript" src="erpbi/scripts/jsTree/css.js"></script>
+    <script type="text/javascript" src="erpbi/scripts/jsTree/tree_component.js"></script>
+
+    <script type="text/javascript" src="erpbi/scripts/jstree/loadtree.js"></script>
+	
+
+<script language="javascript" type="text/javascript">
+
+var year="2007"; // Output of yearSelector
+var period="12"; // Output of periodSelector
+var customer="All Customers by Code"; // Output of custSelector
+var productClass="All Products by Class"; // Output of prodClassSelector
+var productCode="All Products by Code"; // Output of prodCodeSelector
+var kpi="Amount, Delivery Gross"; // Output of KPISelector
+
+yearSelector = 
+{
+  name: "yearSelector",
+  type: "select",
+  solution: "erpbi-reports",
+  path: "SODashboards",
+  action: "yearSelect.xaction",
+  parameters:[],
+  parameter:"year",
+  htmlObject: "yearSelector",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){}
+}
+
+periodSelector = 
+{
+  name: "periodSelector",
+  type: "select",
+  solution: "erpbi-reports",
+  path: "SODashboards",
+  action: "periodSelect.xaction",
+  parameters:[],
+  parameter:"period",
+  htmlObject: "periodSelector",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){}
+}
+
+custSelector = 
+{
+  name: "custSelector",
+  type: "select",
+  solution: "erpbi-reports",
+  path: "SODashboards",
+  action: "custSelect.xaction",
+  parameters:[],
+  parameter:"customer",
+  htmlObject: "custSelector",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){}
+}
+
+prodClassSelector = 
+{
+  name: "prodClassSelector",
+  type: "select",
+  solution: "erpbi-reports",
+  path: "SODashboards",
+  action: "prodClassSelect.xaction",
+  parameters:[],
+  parameter:"productClass",
+  htmlObject: "prodClassSelector",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){}
+}
+
+prodCodeSelector = 
+{
+  name: "prodCodeSelector",
+  type: "select",
+  solution: "erpbi-reports",
+  path: "SODashboards",
+  action: "prodCodeSelect.xaction",
+  parameters:[],
+  parameter:"productCode",
+  htmlObject: "prodCodeSelector",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){}
+}
+
+KPISelector = 
+{
+  name: "KPISelector",
+  type: "select",
+  solution: "erpbi-reports",
+  path: "KPIDashboards",
+  action: "deliveryKPISelect.xaction",
+  parameters:[],
+  parameter:"kpi",
+  htmlObject: "KPISelector",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){}
+}
+</script>
+
+
+</head>
+
+<body >
+
+<div id="headers" >
+
+<h1 id="logo-text"  >
+	Sales Delivery KPIs
+</h1>
+
+<div id="footer" >
+	<div style="float:left; padding: 0px 10px">
+		<div>Year</div>
+		<div id="yearSelector">Item 1</div>
+	</div>
+	<div style="float:left; padding: 0px 10px">
+		<div>Period</div>
+		<div id="periodSelector">Item 1</div>
+	</div>
+	<div style="float:left; padding: 0px 10px">
+		<div>Customer</div>
+		<div id="custSelector">Item 1</div>
+	</div>
+	<div style="float:left; padding: 0px 10px">
+		<div>Product Class</div>
+		<div id="prodClassSelector">Item 1</div>
+	</div>
+	<div style="float:left; padding: 0px 10px">
+		<div>Product Code</div>
+		<div id="prodCodeSelector">Item 1</div>
+	</div>
+	<div style="float:left; padding: 0px 10px">
+		<div>KPI</div>
+		<div id="KPISelector">Item 1</div>
+	</div>
+	</div>
+
+</div>
+
+</div>
+
+
+<div id="columns" >
+<table >
+<tr>
+
+<td id="explorer" class="demo" valign="top" >
+	<p></p>
+	<ul >
+		<li id="phtml_1" class="open"><a href="#" >Sales</a>
+			<ul>
+				<li id="phtml_1" class="open"><a href="#" >Dashboards</a>
+					<ul>
+						<li id="phtml_2" class="treeitem"><a target="_blank" href="RenderXCDF?solution=erpbi-reports&path=%2FSODashboards&action=Dashboard.xcdf&template=mantle" >Overview</a></li>
+					</ul>
+					<ul>
+						<li id="phtml_2" class="treeitem"><a target="_blank" href="RenderXCDF?solution=erpbi-reports&path=%2FKPIDashboards&action=orderKPIDash.xcdf&template=mantle" >Order KPIs</a></li>
+					</ul>
+					<ul>
+						<li id="phtml_2" class="treeitem"><a target="_blank" href="RenderXCDF?solution=erpbi-reports&path=%2FKPIDashboards&action=deliveryKPIDash.xcdf&template=mantle" >Delivery KPIs</a></li>
+					</ul>
+					<ul>
+						<li id="phtml_2" class="treeitem"><a target="_blank" href="RenderXCDF?solution=erpbi-reports&path=%2FKPIDashboards&action=outOrdersKPIDash.xcdf&template=mantle" >Order Fulfillment KPIs</a></li>
+					</ul>
+					
+					
+				</li>
+				<li id="phtml_1" class="open"><a href="#" >Pivot Tables</a>
+					<ul>
+						<li id="phtml_3" class="treeitem"><a target="_blank" href="RenderXCDF?solution=erpbi-reports&path=%2FSOPivots&action=orderByDim.xcdf&template=mantle" >Orders by Dim</a></li>
+					</ul>
+					<ul>
+						<li id="phtml_4" class="treeitem"><a target="_blank" href="RenderXCDF?solution=erpbi-reports&path=%2FSOPivots&action=orderByPeridodByDim.xcdf&template=mantle" >Orders by Period by Dim</a></li>
+					</ul>
+					<ul>
+						<li id="phtml_5" class="treeitem"><a target="_blank" href="RenderXCDF?solution=erpbi-reports&path=%2FSOPivots&action=deliveryByDim.xcdf&template=mantle" >Deliveries by Dim</a></li>
+					</ul>
+					<ul>
+						<li id="phtml_6" class="treeitem"><a target="_blank" href="RenderXCDF?solution=erpbi-reports&path=%2FSOPivots&action=deliveryByPeriodByDim.xcdf&template=mantle" >Deliveries by Period by Dim</a></li>
+					</ul>
+					<ul>
+						<li id="phtml_7" class="treeitem"><a target="_blank" href="RenderXCDF?solution=erpbi-reports&path=%2FSOPivots&action=outOrdersByDim.xcdf&template=mantle" >Order Fulfillment by Dim</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li id="phtml_5" class="closed"><a href="#">CRM</a></li>
+		<li id="phtml_6" class="closed"><a href="#">Accounting</a></li>
+		<li id="phtml_7" class="closed"><a href="#">Inventory</a></li>
+	</ul>
+
+</td>
+
+<td id="content">
+<div class="ui-layout-center"  >
+{content}
+</div>
+</td>
+</tr>
+</table>
+
+</div>
+
+</body>
+</html>
+

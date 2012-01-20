@@ -1,0 +1,50 @@
+body 
+{
+	background-color:#8DB6CD
+}
+
+h1
+{
+	font-family: Georgia;
+	color: #FFFFFF;
+	font-size: 24pt;
+	background-image:url('images/wave.jpg'); 
+ 	border:1px solid blue
+}
+
+div#headers
+{
+	position:relative; 
+	top;0px; left;0px padding:5px;
+	background-color:#8DB6CD
+}
+
+ul#menu
+{background-color:#8DB6CD}
+
+div#columns 
+{clear:both}
+
+td#explorer
+{
+	valign: top;
+	padding:10px; 
+	background-color:#EEE9E9
+}
+
+td#content
+{
+	valign: top;
+	border:1px solid blue; 
+	padding:10px; 
+	background-color:#B0C4DE
+}
+
+div#footer
+{
+	clear:both; 
+	height:50px; 
+	padding:5px; 
+	background-color:#8DB6CD
+}
+

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdf>
+	<title>Oustanding Orders by Dimension</title>
+	<author></author>
+	<description>Oustanding Orders by Dimension</description>
+	<icon></icon>
+	<template>outOrdersByDimTemplate.html</template>
+	<style>SOPivotMantle</style>
+</cdf>

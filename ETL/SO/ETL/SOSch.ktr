@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transformation>
+  <info>
+    <name>SOSch</name>
+    <description/>
+    <extended_description/>
+    <trans_version/>
+    <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
+    <directory>&#47;</directory>
+    <parameters>
+    </parameters>
+    <log>
+<trans-log-table><connection/>
+<schema/>
+<table/>
+<size_limit_lines/>
+<interval/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>N</enabled><name>CHANNEL_ID</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name><subject/></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name><subject/></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name><subject/></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name><subject/></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name><subject/></field><field><id>LINES_REJECTED</id><enabled>N</enabled><name>LINES_REJECTED</name><subject/></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>N</enabled><name>LOG_FIELD</name></field></trans-log-table>
+<perf-log-table><connection/>
+<schema/>
+<table/>
+<interval/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>SEQ_NR</id><enabled>Y</enabled><name>SEQ_NR</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>Y</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>Y</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>INPUT_BUFFER_ROWS</id><enabled>Y</enabled><name>INPUT_BUFFER_ROWS</name></field><field><id>OUTPUT_BUFFER_ROWS</id><enabled>Y</enabled><name>OUTPUT_BUFFER_ROWS</name></field></perf-log-table>
+<channel-log-table><connection/>
+<schema/>
+<table/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>LOGGING_OBJECT_TYPE</id><enabled>Y</enabled><name>LOGGING_OBJECT_TYPE</name></field><field><id>OBJECT_NAME</id><enabled>Y</enabled><name>OBJECT_NAME</name></field><field><id>OBJECT_COPY</id><enabled>Y</enabled><name>OBJECT_COPY</name></field><field><id>REPOSITORY_DIRECTORY</id><enabled>Y</enabled><name>REPOSITORY_DIRECTORY</name></field><field><id>FILENAME</id><enabled>Y</enabled><name>FILENAME</name></field><field><id>OBJECT_ID</id><enabled>Y</enabled><name>OBJECT_ID</name></field><field><id>OBJECT_REVISION</id><enabled>Y</enabled><name>OBJECT_REVISION</name></field><field><id>PARENT_CHANNEL_ID</id><enabled>Y</enabled><name>PARENT_CHANNEL_ID</name></field><field><id>ROOT_CHANNEL_ID</id><enabled>Y</enabled><name>ROOT_CHANNEL_ID</name></field></channel-log-table>
+<step-log-table><connection/>
+<schema/>
+<table/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>Y</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>Y</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>LOG_FIELD</id><enabled>N</enabled><name>LOG_FIELD</name></field></step-log-table>
+    </log>
+    <maxdate>
+      <connection/>
+      <table/>
+      <field/>
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>N</unique_connections>
+    <feedback_shown>Y</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file/>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <step_performance_capturing_size_limit/>
+    <dependencies>
+    </dependencies>
+    <partitionschemas>
+    </partitionschemas>
+    <slaveservers>
+    </slaveservers>
+    <clusterschemas>
+    </clusterschemas>
+  <modified_user>-</modified_user>
+  <modified_date>2010&#47;11&#47;01 12:41:37.237</modified_date>
+  </info>
+  <notepads>
+  </notepads>
+  <connection>
+    <name>ERPI</name>
+    <server/>
+    <type>GENERIC</type>
+    <access>JNDI</access>
+    <database>erpi</database>
+    <port>-1</port>
+    <username/>
+    <password>Encrypted </password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>Y</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>-1</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <order>
+  </order>
+  <step>
+    <name>Drop and create SO tables and Views</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>ERPI</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <sql>DROP TABLE IF EXISTS &quot;ERPI&quot;.&quot;SO_ORDER&quot; CASCADE ;
+DROP TABLE IF EXISTS &quot;ERPI&quot;.&quot;SO_LINE_ITEM&quot; CASCADE;
+DROP TABLE IF EXISTS &quot;ERPI&quot;.&quot;SO_DELIVERY_DOC&quot; CASCADE;
+DROP TABLE IF EXISTS &quot;ERPI&quot;.&quot;SO_DELIVERY_LINE_ITEM&quot; CASCADE;
+DROP TABLE IF EXISTS &quot;ERPI&quot;.&quot;SO_TRANSACTION&quot; CASCADE;
+DROP TABLE IF EXISTS &quot;ERPI&quot;.&quot;SALES_ORDER_FACTS&quot; CASCADE;
+DROP TABLE IF EXISTS &quot;ERPI&quot;.&quot;SALES_DELIVERY_FACTS&quot; CASCADE;
+DROP TABLE IF EXISTS &quot;ERPI&quot;.&quot;SO_FACTS_BY_PERIOD&quot; CASCADE;
+
+CREATE TABLE &quot;ERPI&quot;.&quot;SO_ORDER&quot; 
+(
+    &quot;ORDER_K&quot;   INTEGER NOT NULL UNIQUE,
+    &quot;ORDER_ID&quot; 	    VARCHAR(30) NOT NULL DEFAULT &apos;Unspecified&apos;,
+    &quot;DATE_FROM&quot; 	TIMESTAMP,
+    &quot;DATE_TO&quot; 		TIMESTAMP,
+    &quot;VERSION&quot; 		INTEGER
+);
+
+CREATE INDEX &quot;SO_ORDER_ID_INDEX&quot;  
+   ON &quot;ERPI&quot;.&quot;SO_ORDER&quot;
+   (
+      &quot;ORDER_ID&quot; 
+   );
+
+ALTER TABLE &quot;ERPI&quot;.&quot;SO_ORDER&quot;
+ADD CONSTRAINT  &quot;ORDER_K&quot; PRIMARY KEY
+    (
+        &quot;ORDER_K&quot; 
+    );
+
+CREATE TABLE &quot;ERPI&quot;.&quot;SO_LINE_ITEM&quot; 
+(
+    &quot;ORDER_LINE_ITEM_K&quot; INTEGER NOT NULL UNIQUE,
+    &quot;ORDER_ID&quot;       VARCHAR(30) NOT NULL DEFAULT &apos;Unspecified&apos;,
+    &quot;ORDER_LINE_ITEM_ID&quot; 	VARCHAR(11) NOT NULL DEFAULT &apos;Unspecified&apos;,
+    &quot;DATE_FROM&quot; 	TIMESTAMP,
+    &quot;DATE_TO&quot; 		TIMESTAMP,
+    &quot;VERSION&quot; 		INTEGER
+);
+
+CREATE INDEX &quot;SO_LINE_ITEM_ID_INDEX&quot;  
+   ON &quot;ERPI&quot;.&quot;SO_LINE_ITEM&quot;
+   (
+      &quot;ORDER_ID&quot;, &quot;ORDER_LINE_ITEM_ID&quot; 
+   );
+
+ALTER TABLE &quot;ERPI&quot;.&quot;SO_LINE_ITEM&quot;
+ADD CONSTRAINT  &quot;ORDER_LINE_ITEM_PK&quot; PRIMARY KEY
+    (
+        &quot;ORDER_LINE_ITEM_K&quot; 
+    );
+
+CREATE TABLE &quot;ERPI&quot;.&quot;SO_DELIVERY_DOC&quot; 
+(
+    &quot;DELIVERY_DOC_K&quot;    INTEGER NOT NULL UNIQUE,
+    &quot;DELIVERY_DOC_ID&quot;     VARCHAR(30) NOT NULL DEFAULT &apos;Unspecified&apos;,
+    &quot;DATE_FROM&quot; 	TIMESTAMP,
+    &quot;DATE_TO&quot; 		TIMESTAMP,
+    &quot;VERSION&quot; 		INTEGER
+);
+
+CREATE INDEX &quot;SO_DELIVERY_DOC_ID_INDEX&quot;  
+   ON &quot;ERPI&quot;.&quot;SO_DELIVERY_DOC&quot;
+   (
+      &quot;DELIVERY_DOC_ID&quot;
+   );
+
+
+ALTER TABLE &quot;ERPI&quot;.&quot;SO_DELIVERY_DOC&quot;
+ADD CONSTRAINT  &quot;SO_DELIVERY_DOC_PK&quot; PRIMARY KEY
+    (
+        &quot;DELIVERY_DOC_K&quot; 
+    );
+
+CREATE TABLE &quot;ERPI&quot;.&quot;SO_DELIVERY_LINE_ITEM&quot; 
+(
+    &quot;DELIVERY_LINE_ITEM_K&quot;  INTEGER NOT NULL UNIQUE,
+    &quot;DELIVERY_DOC_ID&quot;       VARCHAR(30) NOT NULL DEFAULT &apos;Unspecified&apos;,
+    &quot;DELIVERY_LINE_ITEM_ID&quot; 	VARCHAR(30) NOT NULL DEFAULT &apos;Unspecified&apos;,
+    &quot;DATE_FROM&quot; 	TIMESTAMP,
+    &quot;DATE_TO&quot; 		TIMESTAMP,
+    &quot;VERSION&quot; 		INTEGER
+);
+
+CREATE INDEX &quot;SO_DELIVERY_LINE_ITEM_ID_INDEX&quot;  
+   ON &quot;ERPI&quot;.&quot;SO_DELIVERY_LINE_ITEM&quot;
+   (
+      &quot;DELIVERY_DOC_ID&quot;, &quot;DELIVERY_LINE_ITEM_ID&quot;
+   );
+
+
+ALTER TABLE &quot;ERPI&quot;.&quot;SO_DELIVERY_LINE_ITEM&quot;
+ADD CONSTRAINT  &quot;DELIVERY_LINE_ITEM_PK&quot; PRIMARY KEY
+    (
+        &quot;DELIVERY_LINE_ITEM_K&quot; 
+    );
+
+CREATE TABLE &quot;ERPI&quot;.&quot;SALES_ORDER_FACTS&quot;
+(
+    &quot;ID_DOCUMENT_K&quot; 	INTEGER NOT NULL,		&#47;* order document *&#47;
+    &quot;ID_TRANS_DOC_K&quot; 	INTEGER NOT NULL,		&#47;* order doc *&#47;
+    &quot;LINE_K&quot; 			INTEGER NOT NULL,		&#47;* document line *&#47;
+	&quot;ISSUE_DATE_K&quot; 		INTEGER NOT NULL,		&#47;* document issue date *&#47;
+	&quot;PROMISE_DATE_K&quot;	INTEGER NOT NULL,		&#47;* customer promise date *&#47;
+    &quot;AMOUNT&quot; 			NUMERIC (24,9) NOT NULL, &#47;* line amount *&#47;
+    &quot;COST&quot; 				NUMERIC (24,9) NOT NULL, &#47;* item cost *&#47;
+    &quot;COMPANY_K&quot; 		INTEGER NOT NULL,
+    &quot;CUSTOMER_K&quot; 		INTEGER NOT NULL,
+    &quot;ITEM_K&quot; 			INTEGER NOT NULL,
+    &quot;DIVISION_K&quot; 		INTEGER NOT NULL,
+    &quot;BUSINESS_UNIT_K&quot;	INTEGER NOT NULL,
+    &quot;COST_CENTER_K&quot; 	INTEGER NOT NULL,
+    &quot;ACCOUNT_REP_K&quot;     INTEGER NOT NULL,
+    &quot;CURRENCY&quot;      	VARCHAR(3) NOT NULL
+);
+
+ ALTER TABLE &quot;ERPI&quot;.&quot;SALES_ORDER_FACTS&quot;
+ ADD CONSTRAINT  &quot;SO_ORDER_FACTS_K&quot; PRIMARY KEY
+   (
+        &quot;ID_TRANS_DOC_K&quot; ,
+        &quot;LINE_K&quot;,
+        &quot;COMPANY_K&quot; 
+   );
+
+ALTER TABLE &quot;ERPI&quot;.&quot;SALES_ORDER_FACTS&quot;
+ADD CONSTRAINT &quot;SO_ORDER_ORDER_FK&quot; FOREIGN KEY (&quot;ID_DOCUMENT_K&quot;)
+    REFERENCES &quot;ERPI&quot;.&quot;SO_ORDER&quot;(&quot;ORDER_K&quot;);
+
+ALTER TABLE &quot;ERPI&quot;.&quot;SALES_ORDER_FACTS&quot;
+ADD CONSTRAINT &quot;SO_ORDER_DOC_FK&quot; FOREIGN KEY (&quot;ID_TRANS_DOC_K&quot;)
+    REFERENCES &quot;ERPI&quot;.&quot;SO_ORDER&quot;(&quot;ORDER_K&quot;);
+
+ALTER TABLE &quot;ERPI&quot;.&quot;SALES_ORDER_FACTS&quot;
+ADD CONSTRAINT &quot;SO_ORDER_LINE_ITEM_FK&quot; FOREIGN KEY (&quot;LINE_K&quot;)
+    REFERENCES &quot;ERPI&quot;.&quot;SO_LINE_ITEM&quot;(&quot;ORDER_LINE_ITEM_K&quot;);
+
+ALTER TABLE &quot;ERPI&quot;.&quot;SALES_ORDER_FACTS&quot;
+ADD CONSTRAINT &quot;SO_ORDER_COMPANY_FK&quot; FOREIGN KEY (&quot;COMPANY_K&quot;)
+    REFERENCES &quot;ERPI&quot;.&quot;COMPANY&quot;(&quot;COMPANY_K&quot;);
+
+ALTER TABLE &quot;ERPI&quot;.&quot;SALES_ORDER_FACTS&quot;
+ADD CONSTRAINT &quot;SO_ORDER_PRODUCT_FK&quot; FOREIGN KEY (&quot;ITEM_K&quot;)
+    REFERENCES &quot;ERPI&quot;.&quot;PRODUCT&quot;(&quot;PRODUCT_K&quot;);
+
+ALTER TABLE &quot;ERPI&quot;.&quot;SALES_ORDER_FACTS&quot;
+ADD CONSTRAINT &quot;SO_ORDER_DIVISION_FK&quot; FOREIGN KEY (&quot;DIVISION_K&quot;)
+    REFERENCES &quot;ERPI&quot;.&quot;DIVISION_TYPE&quot;(&quot;DIVISION_K&quot;);
+
+ALTER TABLE &quot;ERPI&quot;.&quot;SALES_ORDER_FACTS&quot;
+ADD CONSTRAINT &quot;SO_ORDER_BUSINESS_UNIT_FK&quot; FOREIGN KEY (&quot;BUSINESS_UNIT_K&quot;)
+    REFERENCES &quot;ERPI&quot;.&quot;BUSINESS_UNIT&quot;(&quot;BUSINESS_UNIT_K&quot;);
+
+ALTER TABLE &quot;ERPI&quot;.&quot;SALES_ORDER_FACTS&quot;
+ADD CONSTRAINT &quot;SO_ORDER_CUSTOMER_FK&quot; FOREIGN KEY (&quot;CUSTOMER_K&quot;)
+    REFERENCES &quot;ERPI&quot;.&quot;CUSTOMER&quot;(&quot;CUSTOMER_K&quot;);
+
+ALTER TABLE &quot;ERPI&quot;.&quot;SALES_ORDER_FACTS&quot;
+ADD CONSTRAINT &quot;SO_ORDER_COST_CENTER_FK&quot; FOREIGN KEY (&quot;COST_CENTER_K&quot;)
+    REFERENCES &quot;ERPI&quot;.&quot;COST_CENTER&quot;(&quot;COST_CENTER_K&quot;);
+
+ALTER TABLE &quot;ERPI&quot;.&quot;SALES_ORDER_FACTS&quot;
+ADD CONSTRAINT &quot;SO_ORDER_ACCOUNT_REP_FK&quot; FOREIGN KEY (&quot;ACCOUNT_REP_K&quot;)
+    REFERENCES &quot;ERPI&quot;.&quot;PERSON&quot;(&quot;PERSON_K&quot;);
+
+CREATE TABLE &quot;ERPI&quot;.&quot;SALES_DELIVERY_FACTS&quot;
+(
+    &quot;ID_DOCUMENT_K&quot; 	INTEGER NOT NULL,		&#47;* order document *&#47;
+    &quot;ID_TRANS_DOC_K&quot; 	INTEGER NOT NULL,		&#47;* delivery or invoice doc *&#47;
+    &quot;LINE_K&quot; 			INTEGER NOT NULL,		&#47;* document line *&#47;
+	&quot;ISSUE_DATE_K&quot; 		INTEGER NOT NULL,		&#47;* document issue date *&#47;
+	&quot;PROMISE_DATE_K&quot;	INTEGER NOT NULL,		&#47;* customer promise date *&#47;
+    &quot;AMOUNT&quot; 			NUMERIC (24,9) NOT NULL, &#47;* line amount *&#47;
+    &quot;COST&quot; 				NUMERIC (24,9) NOT NULL, &#47;* item cost *&#47;
+    &quot;COMPANY_K&quot; 		INTEGER NOT NULL,
+    &quot;CUSTOMER_K&quot; 		INTEGER NOT NULL,
+    &quot;ITEM_K&quot; 			INTEGER NOT NULL,
+    &quot;DIVISION_K&quot; 		INTEGER NOT NULL,
+    &quot;BUSINESS_UNIT_K&quot;	INTEGER NOT NULL,
+    &quot;COST_CENTER_K&quot; 	INTEGER NOT NULL,
+    &quot;ACCOUNT_REP_K&quot;     INTEGER NOT NULL,
+    &quot;CURRENCY&quot;      	VARCHAR(3) NOT NULL
+);
+
+ ALTER TABLE &quot;ERPI&quot;.&quot;SALES_DELIVERY_FACTS&quot;
+ ADD CONSTRAINT  &quot;SO_DELIVERY_FACTS_K&quot; PRIMARY KEY
+   (
+        &quot;ID_TRANS_DOC_K&quot; ,
+        &quot;LINE_K&quot;,
+        &quot;COMPANY_K&quot; 
+   );
+
+ALTER TABLE &quot;ERPI&quot;.&quot;SALES_DELIVERY_FACTS&quot;
+ADD CONSTRAINT &quot;SO_DELIVERY_ORDER_FK&quot; FOREIGN KEY (&quot;ID_DOCUMENT_K&quot;)
+    REFERENCES &quot;ERPI&quot;.&quot;SO_ORDER&quot;(&quot;ORDER_K&quot;);
+
+ALTER TABLE &quot;ERPI&quot;.&quot;SALES_DELIVERY_FACTS&quot;
+ADD CONSTRAINT &quot;SO_DELIVERY_DOC_FK&quot; FOREIGN KEY (&quot;ID_TRANS_DOC_K&quot;)
+    REFERENCES &quot;ERPI&quot;.&quot;SO_DELIVERY_DOC&quot;(&quot;DELIVERY_DOC_K&quot;);
+
+ALTER TABLE &quot;ERPI&quot;.&quot;SALES_DELIVERY_FACTS&quot;
+ADD CONSTRAINT &quot;SO_DELIVERY_LINE_ITEM_FK&quot; FOREIGN KEY (&quot;LINE_K&quot;)
+    REFERENCES &quot;ERPI&quot;.&quot;SO_DELIVERY_LINE_ITEM&quot;(&quot;DELIVERY_LINE_ITEM_K&quot;);
+
+ALTER TABLE &quot;ERPI&quot;.&quot;SALES_DELIVERY_FACTS&quot;
+ADD CONSTRAINT &quot;SO_DELIVERY_COMPANY_FK&quot; FOREIGN KEY (&quot;COMPANY_K&quot;)
+    REFERENCES &quot;ERPI&quot;.&quot;COMPANY&quot;(&quot;COMPANY_K&quot;);
+
+ALTER TABLE &quot;ERPI&quot;.&quot;SALES_DELIVERY_FACTS&quot;
+ADD CONSTRAINT &quot;SO_DELIVERY_PRODUCT_FK&quot; FOREIGN KEY (&quot;ITEM_K&quot;)
+    REFERENCES &quot;ERPI&quot;.&quot;PRODUCT&quot;(&quot;PRODUCT_K&quot;);
+
+--ALTER TABLE &quot;ERPI&quot;.&quot;SALES_DELIVERY_FACTS&quot;
+--ADD CONSTRAINT &quot;AR_INVOICE_FK&quot; FOREIGN KEY (&quot;AR_INVOICE_K&quot;)
+--    REFERENCES &quot;ERPI&quot;.&quot;AR_INVOICE&quot;(&quot;AR_INVOICE_K&quot;);
+
+ALTER TABLE &quot;ERPI&quot;.&quot;SALES_DELIVERY_FACTS&quot;
+ADD CONSTRAINT &quot;SO_DELIVERY_DIVISION_FK&quot; FOREIGN KEY (&quot;DIVISION_K&quot;)
+    REFERENCES &quot;ERPI&quot;.&quot;DIVISION_TYPE&quot;(&quot;DIVISION_K&quot;);
+
+ALTER TABLE &quot;ERPI&quot;.&quot;SALES_DELIVERY_FACTS&quot;
+ADD CONSTRAINT &quot;SO_DELIVERY_BUSINESS_UNIT_FK&quot; FOREIGN KEY (&quot;BUSINESS_UNIT_K&quot;)
+    REFERENCES &quot;ERPI&quot;.&quot;BUSINESS_UNIT&quot;(&quot;BUSINESS_UNIT_K&quot;);
+
+ALTER TABLE &quot;ERPI&quot;.&quot;SALES_DELIVERY_FACTS&quot;
+ADD CONSTRAINT &quot;SO_DELIVERY_CUSTOMER_FK&quot; FOREIGN KEY (&quot;CUSTOMER_K&quot;)
+    REFERENCES &quot;ERPI&quot;.&quot;CUSTOMER&quot;(&quot;CUSTOMER_K&quot;);
+
+ALTER TABLE &quot;ERPI&quot;.&quot;SALES_DELIVERY_FACTS&quot;
+ADD CONSTRAINT &quot;SO_DELIVERY_COST_CENTER_FK&quot; FOREIGN KEY (&quot;COST_CENTER_K&quot;)
+    REFERENCES &quot;ERPI&quot;.&quot;COST_CENTER&quot;(&quot;COST_CENTER_K&quot;);
+
+ALTER TABLE &quot;ERPI&quot;.&quot;SALES_DELIVERY_FACTS&quot;
+ADD CONSTRAINT &quot;SO_DELIVERY_ACCOUNT_REP_FK&quot; FOREIGN KEY (&quot;ACCOUNT_REP_K&quot;)
+    REFERENCES &quot;ERPI&quot;.&quot;PERSON&quot;(&quot;PERSON_K&quot;);
+
+
+CREATE TABLE &quot;ERPI&quot;.&quot;SO_FACTS_BY_PERIOD&quot;
+(
+  	&quot;DATE_PATTERN&quot; 		character varying(2) NOT NULL,
+  	&quot;FISCAL_PERIOD_K&quot; 	integer NOT NULL,
+	&quot;TRANS_TYPE&quot;		character varying(8) NOT NULL,
+	&quot;ENDDATE&quot; 			INTEGER NOT NULL,		        &#47;* julian eop or delivery date *&#47;
+    &quot;ID_DOCUMENT_K&quot; 	INTEGER NOT NULL,				&#47;* order document *&#47;
+    &quot;ID_TRANS_DOC_K&quot; 	INTEGER NOT NULL,				&#47;* last delivery *&#47;
+	&quot;ISSUE_DATE_K&quot; 		INTEGER NOT NULL,				&#47;* julian document issue date *&#47;
+	&quot;PROMISE_DATE_K&quot;	INTEGER NOT NULL,				&#47;* customer promise date *&#47;
+	&quot;DELIVERY_DATE_K&quot;	INTEGER NOT NULL,				&#47;* last delivery date *&#47;
+    &quot;ORDER SUM&quot; 		NUMERIC (24,9) NOT NULL, 
+    &quot;DELIVERY SUM&quot; 	NUMERIC (24,9) NOT NULL, 
+    &quot;COST SUM&quot;		NUMERIC (24,9) NOT NULL, 
+    &quot;COMPANY_K&quot; 		INTEGER NOT NULL,
+    &quot;CUSTOMER_K&quot; 		INTEGER NOT NULL,
+    &quot;ITEM_K&quot; 			INTEGER NOT NULL,
+    &quot;DIVISION_K&quot; 		INTEGER NOT NULL,
+    &quot;BUSINESS_UNIT_K&quot;	INTEGER NOT NULL,
+    &quot;COST_CENTER_K&quot; 	INTEGER NOT NULL,
+    &quot;ACCOUNT_REP_K&quot;     INTEGER NOT NULL,
+    &quot;CURRENCY&quot;      	VARCHAR(3) NOT NULL
+)
+
+
+</sql>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>120</xloc>
+      <yloc>111</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step_error_handling>
+  </step_error_handling>
+   <slave-step-copy-partition-distribution>
+</slave-step-copy-partition-distribution>
+   <slave_transformation>N</slave_transformation>
+</transformation>
